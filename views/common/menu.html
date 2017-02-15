@@ -1,0 +1,10 @@
+<div class="bp-square-list">
+    <div ng-repeat="menuItem in navBarItems"
+        ng-class="menuItem.class" class="bp-square-item-small  bp-square-item-large" ng-click="redirect(menuItem.state)">
+        <img ng-src="{{menuItem.icon}}">
+        <span>{{menuItem.text}}</span>
+    </div>
+    <div class="bp-log-out bp-menu-log-out">
+        <span ng-click="logOut()">Salir</span>
+    </div>
+</div>

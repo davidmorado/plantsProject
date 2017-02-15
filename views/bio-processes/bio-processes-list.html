@@ -1,0 +1,48 @@
+<div class="bp-body-container">
+    <div class="alert alert-danger bp-alert" ng-show="error">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(true)" >&times;</a>
+        <strong>Error:</strong> <span class="bp-alert-message"> {{errorMessage}} <span>
+    </div>
+    <div class="alert alert-success bp-alert" ng-show="success ">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(false)" >&times;</a>
+        <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
+    </div>
+
+    <div class="bp-square-list">
+        <div class="bp-square-item-small bp-common-square bp-square-item-large" ng-click="displayModal(modalActions.add)"
+        ng-class="permissions.addBioProcess.class" >
+            <img ng-src="./images/icons/add_icon.png">
+            <span>Agregar Tipo de Equipo</span>
+        </div>
+    </div>
+    <div class="bp-search-bar-container bp-data">
+        <div class="col-lg-6 bp-search-bar">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Busca por nombre..." ng-model="search.name">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="bp-list-container">
+        <div ng-repeat="bioProcess in bioProcesses | filter:search" ng-show="permissions.viewBioProcess.enabled">
+            <div data-toggle="collapse" data-target="#item1" class="bp-list-item-collapse">
+                <div class="bp-list-item-mid">
+                    <div class="bp-list-item-data">
+                        <span>{{bioProcess.name}}</span>
+                    </div>
+                </div>
+                <div class="bp-list-item-mid bp-list-item-icons">
+                    <img src="./images/icons/delete_icon.png" ng-click="removeBioProcess(bioProcess)">
+                    <img src="./images/icons/view_icon.png" ng-click="displayModal(modalActions.view, bioProcess)" ng-class="permissions.removeBioProcess.class">
+                </div>
+            </div>
+        </div>
+        <div ng-show="!permissions.viewBioProcess.enabled" class="bp-list-msg">
+            <p>El usuario no tiene permisos para ver la lista de bio procesos</p>
+        </div>
+    </div>
+</div>

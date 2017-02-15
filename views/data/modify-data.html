@@ -1,0 +1,47 @@
+<div class="bp-body-container">
+    <div class="alert alert-danger bp-alert" ng-show="error">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(true)" >&times;</a>
+        <strong>Error:</strong> <span class="bp-alert-message"> {{errorMessage}} <span>
+    </div>
+    <div class="alert alert-success bp-alert" ng-show="success ">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(false)" >&times;</a>
+        <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
+    </div>
+    <div class="form-header">
+        <label>{{action}}</label>
+    </div>
+    <form class="bp-modal-form">
+        <label>Bio Proceso</label>
+        <select ng-model="selectedBioProcess" ng-options="bioProcess.name for bioProcess in bioProcesses"
+          ng-disabled="action === actions.view" ng-change="updateFactors()">
+        </select>
+        <div class="data-container" ng-show="factors.length > 0">
+            <label class="large-lbl">Fecha</label>
+            <input date-time format="yyyy-MM-dd HH:mm" ng-model="data.date" class="date-input">
+            <label class="large-lbl">Factores</label>
+            <div class="bp-top-spaced bp-data-list">
+                <div class="data-column">
+                    <div ng-repeat="factor in factors" class="data-row">
+                        <p class="data-name">{{factor.name}} : </p>
+                    </div>
+                </div>
+                <div class="space"></div>
+                <div class="data-column">
+                    <div ng-repeat="factor in factors" class="data-row">
+                        <input type="number" name="" class="data-input"
+                        ng-model="factor.value" ng-value="factor.value">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="data-container" ng-show="factors.length <= 0">
+            <label class="large-lbl">Este BioProceso no tiene factores</label>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <div align="center">
+            <button class="btn-lg bp-button bp-cancel-button" type="button" ng-click="cancel()">Volver</button>
+            <button class="btn-lg bp-button bp-submit-btn" type="button" ng-click="save()" ng-show="action != actions.view && factors.length > 0">Guardar</button>
+        </div>
+    </div>
+</div>

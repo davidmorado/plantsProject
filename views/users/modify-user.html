@@ -1,0 +1,39 @@
+<div class="bp-body-container">
+    <div class="alert alert-danger bp-alert" ng-show="error">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(true)" >&times;</a>
+        <strong>Error:</strong> <span class="bp-alert-message"> {{errorMessage}} <span>
+    </div>
+    <div class="alert alert-success bp-alert" ng-show="success ">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(false)" >&times;</a>
+        <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
+    </div>
+    <div class="form-header">
+        <label>{{action}}</label>
+    </div>
+    <form class="bp-modal-form">
+        <label>Compañia</label>
+        <select ng-model="selectedCompany" ng-options="company.name for company in companies"
+          ng-disabled="action === actions.view || action === actions.edit_own">
+        </select>
+        <label>Nombre</label>
+        <input ng-model="user.name">
+        <label >Apellidos</label>
+        <input ng-model="user.lastName"></input>
+        <label >Email</label>
+        <input ng-model="user.email"></input>
+        <label>Contraseña</label>
+        <input type="password" ng-model="user.password"></input>
+        <label >Roles</label>
+        <ul class="bp-top-spaced">
+            <li class="list-group-item" ng-click="modifyRole(role)" ng-class="role.class" ng-repeat="role in displayRoles">
+                {{role.name}}
+            </li>
+        </ul>
+    </form>
+    <div class="modal-footer">
+        <div align="center">
+            <button class="btn-lg bp-button bp-cancel-button" type="button" ng-click="cancel()">Volver</button>
+            <button class="btn-lg bp-button bp-submit-btn" type="button" ng-click="save()" ng-show="action != actions.view">Guardar</button>
+        </div>
+    </div>
+</div>

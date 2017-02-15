@@ -1,0 +1,39 @@
+<div class="modal-content">
+    <div class="modal-header" id="modalAlert">
+      <div align="center">
+        <h3 class="modal-title">{{calculation.name}}</h3>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-danger bp-alert" ng-show="error">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(true)" >&times;</a>
+        <strong>Error:</strong> <span class="bp-alert-message"> {{errorMessage}} <span>
+      </div>
+      <div class="alert alert-success bp-alert" ng-show="success ">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(false)" >&times;</a>
+        <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
+      </div>
+      <form class="bp-modal-form">
+        <label>Resultado</label>
+        <h3 >{{calculation.result}}</h3>
+      </form>
+      <form class="bp-modal-form">
+        <label>Rango de Fechas</label>
+        <h3 >{{calculation.dateRange}}</h3>
+      </form>
+      <form class="bp-modal-form">
+        <label>Actividad Recomendada</label>
+        <h3>{{calculation.description}}</h3>
+      </form>
+      
+
+           
+    </div>
+    <div class="modal-footer">
+      <div align="center">
+      <button class="btn-lg bp-button bp-cancel-button" type="button" ng-click="cancel()" autofocus>Salir</button>
+      </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,38 @@
+{
+  "name": "biopredictor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Luis Cruz, Fabian Arce, David Obando",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "gulp": "latest",
+    "gulp-compass": "latest",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "latest",
+    "gulp-util": "^3.0.7"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-datepicker": "^1.0.5",
+    "angular-local-storage": "^0.5.0",
+    "angular-ui-bootstrap": "^2.1.3",
+    "angular-ui-router": "^0.3.1",
+    "async": "^2.0.1",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "httpdispatcher": "^1.0.0",
+    "jquery": "^3.1.0",
+    "moment": "^2.16.0",
+    "moment-timezone": "^0.5.9",
+    "mysql": "^2.11.1",
+    "path": "^0.12.7"
+  }
+}

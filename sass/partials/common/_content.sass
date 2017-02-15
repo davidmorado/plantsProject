@@ -1,0 +1,321 @@
+// *
+// * Author:      Luis Carlos Cruz - kalo070995@gmail.com
+// * Date:        19 Ago 2016
+// * Description: Main content styles
+//
+//
+html *
+    font-family: $font-roboto
+
+.bp-main-content
+    padding: 0
+
+.bp-body-container
+
+    width: 100%
+
+    input, li, select
+        color: $color-font-grey
+
+.bp-centered-container
+    @include display-flex
+    @include justify-content(center)
+    font-family: $font-roboto
+    width: 100%
+
+.bp-button
+    color: white
+    border: none
+
+.bp-submit-btn
+    background-color: $color-aquamarine
+
+.bp-cancel-button
+    background-color: $color-ligh-red
+
+
+.bp-alert
+    margin-bottom: 0 !important
+
+    .bp-aler-message
+        font-size: 12px
+
+.bp-content-load-panel
+    top: 0
+    height: 0
+    width: 100vw
+    position: fixed
+    z-index: 5000
+    background-color: $color-background-loading
+    opacity: 0
+    color: white
+    text-align: center
+    padding-top: 0
+    font-size: 34px
+    -webkit-transition: opacity 0.25s ease-in-out
+    -moz-transition: opacity 0.25s ease-in-out
+    transition: opacity 0.25s ease-in-out
+
+    .load-img
+        z-index: -1
+
+.bp-bio-process
+    background-color: $color-font-grey
+.bp-factor
+    background-color: $color-light-orange
+.bp-company
+    background-color: $color-coffee
+.bp-user
+    background-color: $color-link-aquamarine
+.bp-role
+    background-color: $color-intense-yellow
+.bp-data
+    background-color: $color-dark-grey
+.bp-report
+    background-color: $color-light-purple
+.bp-calculation
+    background-color: $color-light-green
+.bp-log-out
+    background-color: $color-ligh-red
+.bp-common-square
+    background-color: $color-aquamarine
+.bp-common-square-blue
+    background-color: $color-blue
+
+.bp-square-list
+    width: 100%
+    @include display-flex
+    @include flex-direction(row)
+    @include flex-wrap(wrap)
+    position: relative
+
+    .bp-square-item-small
+        @include display-flex
+        @include flex-direction(column)
+        width: 50%
+        min-height: 23.5vh
+
+        span
+            text-align: center
+            color: $color-white
+            min-height: 6vh
+        img
+            margin: 5vh auto 6px auto
+
+    .bp-square-item-large
+        width: 100%
+
+.bp-search-bar-container
+    width: 100%
+    min-height: 9vh
+    text-align: center
+    @include display-flex
+    @include justify-content(center)
+
+    .bp-search-bar
+        margin: auto
+
+.bp-list-container
+    width: 100%
+
+    .bp-list-item-inactive
+        background-color: $color-light-orange !important
+
+    .bp-list-item-collapse
+        @include display-flex
+        @include flex-direction(row)
+        height: 10vh
+        background-color: $color-light-green
+        color: $color-white
+
+        .bp-list-item-mid
+            @include display-flex
+            width: 50%
+
+        .bp-list-item-data
+            margin-top: auto
+            margin-bottom: auto
+            margin-left: 10%
+
+        .bp-list-item-icons
+            @include justify-content(flex-end)
+
+            img
+                width: 30px
+                height: 30px
+                margin-top: auto
+                margin-bottom: auto
+                margin-right: 10%
+
+    .bp-list-collapse-area
+        @include display-flex
+        @include flex-direction(column)
+
+        .collapse-area-item
+            @include display-flex
+            height: 8vh
+            background-color: $color-light-grey
+            color: $color-white
+
+            span
+                margin: auto
+
+.bp-modal-form
+    width: 80%
+    margin: 0 auto 1rem auto
+    @include flex-direction(column)
+
+    label
+        font-size: 18px
+        text-align: center
+        width: 100%
+        margin-top: 3vh
+        color: $color-darkcyan
+
+    input, textarea
+        width: 100%
+        text-align: center
+        border: 0
+        outline: 0
+        border-bottom: 1px solid $color-font-grey
+        margin-top: 8px
+        font-size: 14px
+
+    textarea
+        height: 16vh
+        resize: none
+
+    select
+        width: 100%
+        height: 2em
+        margin-top: 0.5em
+        background-color: $color-white
+        border-color: $color-black
+
+.modal-title
+    color: $color-darkcyan
+    font-size: 22px
+
+.bp-top-spaced
+    margin-top: 20px
+    text-align: center
+    @include display-flex
+    @include justify-content(center)
+    @include flex-direction(column)
+
+    li
+        font-size: 14px
+        color: $color-font-grey
+        font-weight: bold
+
+.bp-data-list
+    @include flex-direction(row)
+
+.data-column
+    width: 48%
+
+    .data-row
+        height: 2rem
+        margin-bottom: 1rem
+
+    .data-input
+        margin-top: 0
+        border: none
+        height: 100%
+
+    .data-name
+        padding-top: 0.5rem
+        color: grey
+
+
+
+.bp-dropdown
+    text-align: center
+    margin-top: 12px
+
+    button
+        width: 100%
+
+    ul
+        width: 100%
+
+        a
+            text-overflow: ellipsis
+            overflow: hidden
+
+.form-header
+    padding-top: 10px
+    padding-bottom: 10px
+    text-align: center
+    background-color: $color-nav-aquamarine
+    border-top: 1px solid $color-white
+    border-bottom: 1px solid $color-white
+
+    label
+        font-size: 1.5em
+        color: $color-white
+
+.bp-disabled
+    opacity: 0.4
+
+.bp-enabled
+    opacity: 1
+
+.bp-list-msg
+    text-align: center
+
+    p
+        margin-top: 7rem
+        text-align: center
+        margin-left: 5%
+        margin-right: 5%
+        font-size: 1.5em
+
+.date-picker-date-time
+    width: 100%
+    table
+        width: 100%
+
+.data-container
+    background-color: $color-light-grey
+    margin-top: 1rem
+    display: flex
+    flex-direction: column
+    min-height: 4rem
+
+    .large-lbl
+        color: grey
+        font-size: 1.3rem
+
+    .date-input
+        background-color: $color-light-grey
+        padding: 10px
+        font-size: 1.3rem
+        width: 75%
+        margin: auto
+.file-name
+    background-color: $color-dark-grey
+    height: 3.5rem
+    color: $color-white
+    display: flex
+    justify-content: center
+
+.flex-centered
+    margin: auto
+
+.errors-container
+    background-color: $color-ligh-red
+    min-height: 5rem
+    display: flex
+    justify-content: center
+    color: $color-white
+    margin: 1rem auto 2rem auto
+    border-radius: 5px
+    width: 90%
+    font-size: 0.8rem
+
+.load-csv
+    width: 60%
+
+.input-file
+    display: none !important

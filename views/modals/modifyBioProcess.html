@@ -1,0 +1,33 @@
+<div class="modal-content">
+    <div class="modal-header" id="modalAlert">
+      <div align="center">
+        <h3 class="modal-title">{{currentAction}}</h3>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-danger bp-alert" ng-show="error">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(true)" >&times;</a>
+        <strong>Error:</strong> <span class="bp-alert-message"> {{errorMessage}} <span>
+      </div>
+      <div class="alert alert-success bp-alert" ng-show="success ">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(false)" >&times;</a>
+        <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
+      </div>
+      <form class="bp-modal-form">
+        <label>Nombre</label>
+        <input ng-model="bioProcess.name">
+        <label >Atributos</label>
+        <ul class="bp-top-spaced">
+          <li class="list-group-item" ng-click="modifyFactor(factor)" ng-class="factor.class" ng-repeat="factor in displayFactors">{{factor.name}}</li>
+        </ul>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div align="center">
+      <button class="btn-lg bp-button bp-cancel-button" type="button" ng-click="cancel()" autofocus>Salir</button>
+        <button class="btn-lg bp-button bp-submit-btn" type="button" ng-click="save()" autofocus>Guardar</button>
+      </div>
+    </div>
+</div>
+
+

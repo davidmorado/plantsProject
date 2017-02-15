@@ -1,0 +1,35 @@
+<div class="bp-body-container">
+	<span class="title">Reportes</span>
+	<div class="navReport">
+		<ul>
+		  <li><button ng-click="getUsers()">Datos</button></li>
+		  <li><button ng-click="getCompaniesReport(companiesList.company)">Compañias</button></li>
+		  <li><button ng-click="getRoles()">Predicciones</button></li>
+		  <li><button ng-click="getFactorsReport(companiesList.company)">Factores</button></li>
+  		  <li><button ng-click="getBioProcessesReport(companiesList.company)">BioProcesos</button></li>
+		</ul>
+
+		<div ng-show="showCompanyFilter" class="filterList">
+			<select ng-model="companiesList.company">
+				<option ng-repeat="company in companies" value="{{company}}">{{company.name}}</option>
+		    </select>
+	    </div>
+
+		<div ng-show="showBioProcessFilter" class="filterList">
+			<select ng-model="bioProcessesList.process">
+				<option ng-repeat="bioProcess in bioProcesses" value="{{bioProcess}}">{{bioProcess.name}}</option>
+		    </select>
+	    </div>
+
+	    <div class="downloadLink">
+		    <a ng-show="showDownload" id="downloadButton">{{downloadName}}</a>
+	    </div>
+
+		<div class="reportContainer" ng-repeat="report in reports">
+			<div class="report" ng-repeat="element in report.element">
+				<div>{{element.title}}: {{element.content}}</div>
+				<hr>
+			</div>
+		</div>
+	</div>
+</div>

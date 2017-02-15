@@ -1,0 +1,19 @@
+<div class="bp-login-container">
+    <div class="alert alert-danger bp-alert" ng-show="error">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert()" >&times;</a>
+        <strong>Error:</strong> <span class="bp-alert-message"> {{errorMessage}} <span>
+    </div>
+    <div class="bp-logo-container">
+        <img class="img-responsive" src="./images/logoplant.png" alt="Logo">
+    </div>
+    <form class="bp-centered-container bp-login-form">
+        <label>Correo</label>
+        <input required ng-model="user.email">
+        <label class="bp-second-lbl">Contraseña</label>
+        <input type="password" required ng-model="user.password">
+        <button type="submit" class="btn-lg bp-button bp-submit-btn" ng-click="login()" >Ingresar</button>
+    </form>
+    <div class="bp-forgot-pass">
+        <a>Olvidé mi contraseña</a>
+    </div>
+</div>

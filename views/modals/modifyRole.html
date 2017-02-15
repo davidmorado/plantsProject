@@ -1,0 +1,35 @@
+<div class="modal-content">
+    <div class="modal-header" id="modalAlert">
+      <div align="center">
+        <h3 class="modal-title">{{currentAction}}</h3>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-danger bp-alert" ng-show="error">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(true)" >&times;</a>
+        <strong>Error:</strong> <span class="bp-alert-message"> {{errorMessage}} <span>
+      </div>
+      <div class="alert alert-success bp-alert" ng-show="success ">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(false)" >&times;</a>
+        <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
+      </div>
+      <form class="bp-modal-form">
+        <label>Nombre</label>
+        <input ng-model="role.name">
+        <label >Descripción</label>
+        <textarea ng-model="role.description"></textarea>
+        <label >Acciones</label>
+        <ul class="bp-top-spaced">
+          <li class="list-group-item" ng-click="modifyAction(action)" ng-class="action.class" ng-repeat="action in displayActions">{{action.description}}</li>
+        </ul>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div align="center">
+      <button class="btn-lg bp-button bp-cancel-button" type="button" ng-click="cancel()" autofocus>Salir</button>
+        <button class="btn-lg bp-button bp-submit-btn" type="button" ng-click="save()" autofocus ng-show="currentAction === modalActions.add">Guardar</button>
+      </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,56 @@
+<div class="bp-body-container">
+    <div class="alert alert-danger bp-alert" ng-show="error">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(true)" >&times;</a>
+        <strong>Error:</strong> <span class="bp-alert-message"> {{errorMessage}} <span>
+    </div>
+    <div class="alert alert-success bp-alert" ng-show="success ">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(false)" >&times;</a>
+        <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
+    </div>
+    <div class="bp-square-list">
+        <div class="bp-square-item-small bp-common-square" ng-click="viewMyAccount()">
+            <img ng-src="./images/icons/mi_perfil_icon.png">
+            <span>Mi Perfil</span>
+        </div>
+        <div class="bp-square-item-small bp-common-square-blue" ng-click="modifyUser(modalActions.add)"
+            ng-class="permissions.addUser.class">
+            <img ng-src="./images/icons/agregar_usuario_icon.png">
+            <span>Agregar Usuario</span>
+        </div>
+    </div>
+    <div class="bp-search-bar-container bp-data">
+        <div class="col-lg-6 bp-search-bar">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Busca por nombre..." ng-model="search.name">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="bp-list-container">
+        <div ng-repeat="user in users | filter:search" ng-show="permissions.viewListUser.enabled">
+            <div data-toggle="collapse" data-target="#item1" class="bp-list-item-collapse"
+                ng-class="(!user.isActive) ? 'bp-list-item-inactive' : ''">
+
+                <div class="bp-list-item-mid">
+                    <div class="bp-list-item-data">
+                        <span>{{user.name}}</span>
+                        <br>
+                        <span>{{user.email}}</span>
+                    </div>
+                </div>
+                <div class="bp-list-item-mid bp-list-item-icons">
+                    <img ng-src="{{(!user.isActive) ? './images/icons/delete_w_icon.png' : './images/icons/delete_icon.png'}}" ng-click="removeUser(user)" ng-class="permissions.removeUser.class">
+                    <img src="./images/icons/view_icon.png" ng-click="modifyUser(modalActions.view, user)">
+                    <img src="./images/icons/edit_white.png" ng-click="modifyUser(modalActions.edit, user)" ng-class="permissions.editUser.class">
+                </div>
+            </div>
+        </div>
+        <div ng-show="!permissions.viewListUser.enabled" class="bp-list-msg">
+            <p>El usuario no tiene permisos para ver la lista de usuarios</p>
+        </div>
+    </div>
+</div>

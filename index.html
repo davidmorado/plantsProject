@@ -1,0 +1,75 @@
+<!--
+    // * Author:      Luis Carlos Cruz - kalo070995@gmail.com
+    // * Date:        19 Ago 2016
+    // * Description: Main Index Form
+-->
+<!DOCTYPE html>
+<html ng-app="bioPredictorApp">
+    <head>
+        <meta charset="utf-8"/>
+        <title>myPlant</title>
+        <!-- Meta Data -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+        <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="./node_modules/angular-datepicker/dist/index.min.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/main.css"/>
+        <!-- Styles -->
+    </head>
+    <body>
+        <!-- Page Header -->
+       <nav class="navbar navbar-inverse bp-nav" ng-hide="isLogin || isMenu">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle bp-nav-btn" data-toggle="collapse" data-target="#navBar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" ui-sref="menu">myPlant</a>
+                </div>
+                <div class="collapse navbar-collapse bp-navbar-collapse" id="navBar">
+                    <ul class="nav navbar-nav">
+                        <li ng-repeat="navItem in navBarItems" ng-class="navItem.class" ng-click="redirect(navItem.state)">
+                            <a href="{{navItem.ref}}">{{navItem.text}}</a>
+                            <img ng-src="{{navItem.icon}}">
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="bp-log-out" ng-click="logOut()">
+                            <a href="#">Salir</a>
+                            <span class="glyphicon glyphicon-log-in"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div class="container-fluid bp-main-content">
+            <div class="bp-content-load-panel">
+                <img class="load-img" src="./images/loading.gif">
+            </div>
+            <div ui-view class="bp-centered-container"></div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="./node_modules/angular/angular.min.js"></script>
+        <script src="./node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+        <script src="./node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+
+        <script src="./node_modules/moment/min/moment.min.js"></script>
+        <script src="./node_modules/moment-timezone/builds/moment-timezone.min.js"></script>
+        <script src="./node_modules/angular-datepicker/dist/index.min.js"></script>
+
+
+
+        <script src="./js/main.js"></script>
+        <!-- Scripts -->
+    </body>
+</html>
