@@ -5,7 +5,7 @@
 //
 
 // Change this when deploy is required
-var currentEnvironment = 'develop';
+var currentEnvironment = 'demo';
 
 /**
  * Main server configuration variable
@@ -34,13 +34,13 @@ var configuration =
     },
     demo:
     {
-        port: process.env.PORT  || 8080,
+        port: process.env.PORT  || 3306,
         urlClient:'http://localhost:3000/#/',
         urlServer: 'https://biopredictor-demo.herokuapp.com',
-        dbName: 'heroku_566ced79278b69a',
+        dbName: 'heroku_d505f16243dcbeb',
         dbHost: 'us-cdbr-iron-east-04.cleardb.net',
-        dbUser: 'bf0f24d1515278',
-        dbPass: '240171fc'
+        dbUser: 'bcd40e86ae0725',
+        dbPass: 'f9a283d5'
     },
     production:
     {
