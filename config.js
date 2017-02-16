@@ -34,9 +34,9 @@ var configuration =
     },
     demo:
     {
-        port: process.env.PORT  || 8080,
-        urlClient:'http://localhost:3000/#/',
-        urlServer: 'http://young-badlands-87496.herokuapp.com',
+        port: process.env.PORT  || 3306,
+        urlClient:'https://localhost:3000/#/',
+        urlServer: 'https://young-badlands-87496.herokuapp.com',
         dbName: 'heroku_d505f16243dcbeb',
         dbHost: 'us-cdbr-iron-east-04.cleardb.net',
         dbUser: 'bcd40e86ae0725',
