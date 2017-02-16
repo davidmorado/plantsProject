@@ -25,7 +25,7 @@ bioPredictorApp.factory('request', ['$http', '$q', function($http, $q) {
                 method: 'POST',
                 data: pData,
                 //withCredentials: true
-            }).success(function(data) {
+            }).then(function(data) {
                 deferred.resolve(data);
             }).error(function(data, status) {
                 deferred.reject(data, status);
@@ -46,7 +46,7 @@ bioPredictorApp.factory('request', ['$http', '$q', function($http, $q) {
                 url: pUrl,
                 method: 'GET',
                 //withCredentials: true
-            }).success(function(data) {
+            }).then(function(data) {
                 deferred.resolve(data);
             }).error(function(data, status) {
                 deferred.reject(status, data);
