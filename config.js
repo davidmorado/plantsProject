@@ -34,7 +34,7 @@ var configuration =
     },
     demo:
     {
-        port: process.env.PORT  || 3306,
+        port: process.env.PORT  || 8080,
         urlClient:'http://localhost:3000/#/',
         urlServer: 'https://biopredictor-demo.herokuapp.com',
         dbName: 'heroku_d505f16243dcbeb',
