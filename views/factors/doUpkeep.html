@@ -15,21 +15,19 @@
       </div>
       <form class="bp-modal-form">
 
-        <label>Tipo de Equipo</label>
-        <select id="select1" ng-model="selectedEquipmentType" ng-options="equipment.name for equipment in equipmentTypes">
-        </select>
+        <label >Mantenimientos</label>
+        <ul class="bp-top-spaced">
+          <li class="list-group-item" ng-click="modifyUpkeep(upkeep)" ng-class="upkeep.class" ng-repeat="upkeep in displayUpkeeps"><u>{{upkeep.name}}</u><br><br>{{upkeep.description}}</li>
+        </ul>
 
-        <label>Nombre</label>
-        <input ng-model="role.name">
-        <label >Descripción</label>
-        <textarea ng-model="role.description"></textarea>
- 
       </form>
+
+
     </div>
     <div class="modal-footer">
       <div align="center">
       <button class="btn-lg bp-button bp-cancel-button" type="button" ng-click="cancel()" autofocus>Salir</button>
-        <button class="btn-lg bp-button bp-submit-btn" type="button" ng-click="save()" autofocus ng-show="currentAction === modalActions.add">Guardar</button>
+        <button class="btn-lg bp-button bp-submit-btn" type="button" ng-click="save()" >Guardar</button>
       </div>
     </div>
 </div>

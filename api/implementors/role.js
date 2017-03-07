@@ -40,7 +40,6 @@ module.exports = function(app) {
                             if(rows[0].length > 0) {
                                 result.value = rows[0];
                             }
-
                             result.status = app.constants.httpCodes.success;
                             commonFunctions.endConnection(connection);
                             return commonFunctions.giveResponse(pResponse,result);
@@ -60,12 +59,12 @@ module.exports = function(app) {
          * @param  {Object} pBody     [description]
          * @return {[type]}           [description]
          */
-        removeRole : function (pResponse, pBody) {
+        removeUpkeep : function (pResponse, pBody) {
 
             var result = {};
             // Add query params
-            var query = procedures.removeRole.callStr;
-            query = query.replace(procedures.removeRole.params.roleId, pBody.roleId);
+            var query = procedures.removeUpkeep.callStr;
+            query = query.replace(procedures.removeUpkeep.params.upkeepId, pBody.upkeepId);
             var connection = commonFunctions.createConnection(app);
             connection.connect(function(err) {
 
@@ -185,7 +184,7 @@ module.exports = function(app) {
             var query = procedures.addRole.callStr;
             query = query.replace(procedures.addRole.params.name, pBody.name);
             query = query.replace(procedures.addRole.params.description, pBody.description);
-            query = query.replace(procedures.addRole.params.actionIds, pBody.actionIds);
+            query = query.replace(procedures.addRole.params.equipmentTypeId, pBody.equipmentTypeId);
             var connection = commonFunctions.createConnection(app);
             console.log(query);
             connection.connect(function(err) {
@@ -258,7 +257,47 @@ module.exports = function(app) {
                     return commonFunctions.handleDBError(pResponse,err, connection);
                 }
             });
-        }
+        },
+
+        getUpkeepsXDate : function (pResponse, pBody) {
+
+            var result = {};
+            var query = procedures.getUpkeepsXDate.callStr;
+            query = query.replace(procedures.getUpkeepsXDate.params.startDate, pBody.startDate);
+            query = query.replace(procedures.getUpkeepsXDate.params.endDate, pBody.endDate);
+            query = query.replace(procedures.getUpkeepsXDate.params.equipmentId, pBody.equipmentId);
+
+            var connection = commonFunctions.createConnection(app);
+            connection.connect(function(err) {
+
+                if (!err) {
+                    console.log("Conn init success");
+                    connection.query(query,function(err,rows) {
+
+                        if(err){
+                            commonFunctions.handleDBError(pResponse, err, connection);
+                        } else {
+
+                            // Verify if valid
+                            if(rows[0].length > 0) {
+                                result.value = rows[0];
+                            }
+
+                            result.status = app.constants.httpCodes.success;
+                            commonFunctions.endConnection(connection);
+                            return commonFunctions.giveResponse(pResponse,result);
+                        }
+                    });
+                }
+                else {
+                    console.log("Conn init error");
+                    return commonFunctions.handleDBError(pResponse,err, connection);
+                }
+            });
+        },
+
+
+
 
     }
 };

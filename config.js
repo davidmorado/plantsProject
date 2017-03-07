@@ -5,7 +5,7 @@
 //
 
 // Change this when deploy is required
-var currentEnvironment = 'demo';
+var currentEnvironment = 'develop';
 
 /**
  * Main server configuration variable
@@ -137,16 +137,39 @@ var procedures = {
                 companyId: '@pCompanyId'
             }
         },
+        doUpkeep : {
+            callStr : "CALL doUpkeep(@pEquipmentId,'@pUpkeepIds')",
+            params :{
+                equipmentId: '@pEquipmentId',
+                upkeepIds: '@pUpkeepIds'
+            }
+        },
         getFactors: {
             callStr : "CALL getAttributes()"
+        },
+        getUpkeepsXEquipmentType: {
+            callStr : "CALL getUpkeepsXEquipmentType(@pEquipmentTypeId)",
+            params : {
+                equipmentTypeId :'@pEquipmentTypeId',
+            }
+        },
+        
+        getEquipments: {
+            callStr : "CALL getEquipments()"
         },
         viewFactors: {
             callStr : "CALL viewFactors()"
         },
-        removeFactor : {
-            callStr : "CALL removeFactor(@pFactorId)",
+        getAttributesXEquipmentType: {
+            callStr : "CALL getAttributesXEquipmentType(@pEquipmentTypeId)",
+            params : {
+                equipmentTypeId :'@pEquipmentTypeId',
+            }
+        },
+        removeEquipment : {
+            callStr : "CALL removeEquipment(@pEquipmentId)",
             params :{
-                factorId : '@pFactorId'
+                equipmentId : '@pEquipmentId'
             }
         },
         getFactorsReport : {
@@ -154,16 +177,33 @@ var procedures = {
             params :{
                 companyId : '@pCompanyId'
             }
+        },
+        getEquipmentTypes : {
+            callStr : "CALL getEquipmentTypes()"
+        },
+        addEquipment : {
+            callStr : "CALL addEquipment(@pEquipmentTypeId, '@pCode', '@pBrand', '@pModel', '@pTreatmentUnit', @pVoltage, @pAmpers, @pPotence)",
+            params :{
+                equipmentTypeId : '@pEquipmentTypeId',
+                code : '@pCode',
+                brand : '@pBrand',
+                model : '@pModel',
+                treatmentUnit : '@pTreatmentUnit',
+                voltage : '@pVoltage',
+                ampers : '@pAmpers',
+                potence : '@pPotence',
+
+            }
         }
     },
     role : {
         getRoles : {
-            callStr : "CALL getRoles()"
+            callStr : "CALL getUpkeeps()"
         },
-        removeRole : {
-            callStr : "CALL removeRole(@pRoleId)",
+        removeUpkeep : {
+            callStr : "CALL removeUpkeep(@pUpkeepId)",
             params : {
-                roleId : '@pRoleId'
+                upkeepId : '@pUpkeepId'
             }
         },
         getActionsXRole : {
@@ -176,11 +216,11 @@ var procedures = {
             callStr : "CALL getActions()"
         },
         addRole : {
-            callStr : "CALL addRole('@pName', '@pDescription', '@pActionIds')",
+            callStr : "CALL addUpkeep('@pName', '@pDescription', @pEquipmentTypeId)",
             params : {
                 name : '@pName',
                 description : '@pDescription',
-                actionIds : '@pActionIds'
+                equipmentTypeId : '@pEquipmentTypeId'
             }
         },
         getRolesByUserId : {
@@ -189,30 +229,36 @@ var procedures = {
                 userId : '@pUserId'
             }
         },
+        getUpkeepsXDate : {
+            callStr : "CALL getUpkeepsXDate('@pStartDate', '@pEndDate', @pEquipmentId)",
+            params : {
+                startDate : '@pStartDate',
+                endDate : '@pEndDate',
+                equipmentId : '@pEquipmentId'
+            }
+        },
 
 
     },
     bioProcess: {
         addBioProcess : {
-            callStr : "CALL addBioProcess('@pName', '@pDescription', @pRegisterUserId, @pCompanyId, '@pFactorIds')",
+            callStr : "CALL addEquipmentType('@pName', '@pAttributeIds')",
             params :{
                 name: '@pName',
-                description: '@pDescription',
-                registerUserId: '@pRegisterUserId',
-                companyId: '@pCompanyId',
-                factorIds : '@pFactorIds'
+                factorIds : '@pAttributeIds',
             }
         },
+
         getBioProcesses: {
             callStr : "CALL getEquipmentTypes()",
             params :{
                 
             }
         },
-        removeBioProcess : {
-            callStr : "CALL removeBioProcess(@pBioProcessId)",
+        removeEquipmentType : {
+            callStr : "CALL removeEquipmentType(@pEquipmentTypeId)",
             params :{
-                bioProcessId : '@pBioProcessId'
+                equipmentTypeId : '@pEquipmentTypeId'
             }
         },
         getFactorsXBioProcess : {

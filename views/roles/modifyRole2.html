@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="bioPredictorApp">
+    <head>
+      <meta charset="utf-8"/>
+      <script type="text/javascript" src="jspdf.min.js"></script>
+    </head>
+<body><div class="modal-content">
+    <div class="modal-header" id="modalAlert">
+      <div align="center">
+        <h3 class="modal-title">{{currentAction}}</h3>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-danger bp-alert" ng-show="error">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(true)" >&times;</a>
+        <strong>Error:</strong> <span class="bp-alert-message"> {{errorMessage}} <span>
+      </div>
+      <div class="alert alert-success bp-alert" ng-show="success ">
+        <a href="#" class="close" aria-label="close" ng-click="clearAlert(false)" >&times;</a>
+        <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
+      </div>
+      <form class="bp-modal-form">
+
+        <label>Equipo</label>
+        <select ng-model="selectedEquipment" ng-options="equipment.code for equipment in equipments">
+        </select>
+
+        <form class="bp-modal-form">
+          <label >Fecha de Inicio:</label>
+          <br>
+          <input type="date" ng-model="startDate" id = "startD">
+        </form>
+        <br>
+        <form class="bp-modal-form">
+          <label >Fecha Final:</label>
+          <br>
+          <input type="date" ng-model="endDate" id = "endD">
+        </form>
+ 
+      </form>
+        <script type="text/javascript" src="jspdf.min.js"></script>
+
+    <script type="text/javascript">
+        function genPDF(){
+                var doc=new jsPDF();
+
+                var canvas = document.getElementById('myCanvas');
+                var dataURL = canvas.toDataURL();
+                doc.addImage(dataURL,'JPEG',10,1,180,100);
+                doc.setFontSize(20);
+                doc.setFont("cambria");
+                doc.text(40,60,'Informe de Mantenimiento Preventivo');
+                doc.setFontSize(11);
+                doc.text(15,75,'Unidad de Tratamiento:');
+                doc.text(15,80,'Tipo de Equipo:');
+                doc.text(15,85,'Modelo:');
+                doc.text(15,90,'Marca:');
+                doc.text(15,95,'Voltaje Nominal:');
+                doc.text(80,90,'Amperios Nominal:');
+                doc.text(80,95,'Potencia Nominal:');
+                doc.text(130,75,'Código:');
+                doc.save('Aminsa.pdf');
+        }
+    </script>
+
+    
+
+    
+
+    </div>
+    <div class="modal-footer">
+      <div align="center">
+      <button class="btn-lg bp-button bp-cancel-button" type="button" ng-click="cancel()" autofocus>Salir</button>
+      <button class="btn-lg bp-button bp-submit-btn" type="button" ng-click="save()" autofocus>Descargar</button>
+<!--         <button class="btn-lg bp-button bp-submit-btn" type="button" ng-click="save()" autofocus ng-show="currentAction === modalActions.add">Guardar</button> -->
+      </div>
+    </div>
+</div>
+</body>
+
+
+</html>

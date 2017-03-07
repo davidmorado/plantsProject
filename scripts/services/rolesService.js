@@ -33,8 +33,8 @@ bioPredictorApp.service('rolesService', function(configFactory, request)
      * @param  {Object} pRole [The role to be removed]
      * @return {Object}            [The role object removed]
      */
-    this.removeRole = function(pRole) {
-        return request.post(rolesURL + 'removeRole', pRole);
+    this.removeUpkeep = function(pUpkeep) {
+        return request.post(rolesURL + 'removeUpkeep', pUpkeep);
     };
 
     /**
@@ -70,5 +70,10 @@ bioPredictorApp.service('rolesService', function(configFactory, request)
     this.getRolesByUserId = function(pUser) {
         return request.post(rolesURL + 'getRolesByUserId', pUser);
     };
+
+    this.getUpkeepsXDate = function(pUser) {
+        return request.post(rolesURL + 'getUpkeepsXDate', pUser);
+    };
+
 
 });

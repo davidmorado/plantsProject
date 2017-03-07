@@ -12,7 +12,7 @@
         <div class="bp-square-item-small bp-common-square bp-square-item-large"
             ng-click="displayModal(modalActions.add)" ng-class="permissions.addFactor.class">
             <img ng-src="./images/icons/add_icon.png">
-            <span>Agregar Factor</span>
+            <span>Agregar Equipo</span>
         </div>
     </div>
     <div class="bp-search-bar-container bp-data">
@@ -32,14 +32,17 @@
             <div data-toggle="collapse" data-target="#item1" class="bp-list-item-collapse">
                 <div class="bp-list-item-mid">
                     <div class="bp-list-item-data">
-                        <span>{{factor.name}}</span>
+                        <span>{{factor.code}}</span>
                         <br>
-                        <span>{{factor.registrationDate}}</span>
+                        <span>{{factor.name}}</span>
                     </div>
                 </div>
                 <div class="bp-list-item-mid bp-list-item-icons">
-                    <img src="./images/icons/delete_icon.png" ng-click="removeFactor(factor)" ng-class="permissions.removeFactor.class">
                     <img src="./images/icons/view_icon.png" ng-click="displayModal(modalActions.view, factor)">
+                    <img src="./images/icons/mantenimiento2.png" ng-click="displayModal2(modalActions.edit, factor)">
+                    <img src="./images/icons/delete_icon.png" ng-click="removeEquipment(factor)" ng-class="permissions.removeFactor.class">
+
+                    
                 </div>
             </div>
         </div>

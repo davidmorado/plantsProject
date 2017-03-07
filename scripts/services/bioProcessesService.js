@@ -37,8 +37,8 @@ bioPredictorApp.service('bioProcessesService', function(configFactory, request) 
      * bioProcess to be removed]
      * @return {Object}            [The bioProcess object removed]
      */
-    this.removeBioProcess = function(pBioProcess) {
-        return request.post(bioProcessesUrl + 'removeBioProcess', pBioProcess);
+    this.removeEquipmentType = function(pEquipmentType) {
+        return request.post(bioProcessesUrl + 'removeEquipmentType', pEquipmentType);
     };
 
         /**

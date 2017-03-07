@@ -41,16 +41,16 @@ bioPredictorApp.factory('configFactory', function() {
         loadCompaniesError : 'Ha ocurrido un error cargando las compañías',
         removeCompanyError : 'Ha ocurrido un error removiendo la compañía',
         removeCompanyInvalid : 'La compañía no puede ser removida',
-        removeRoleError: 'Ha ocurrido un error removiendo el rol',
-        removeRoleInvalid : 'El rol no puede ser removido',
-        loadRolesError : 'Ha ocurrido un error cargando los roles',
-        loadBioProcessesError : 'Ha ocurrido un error cargando los Bio Procesos',
+        removeUpkeepError: 'Ha ocurrido un error removiendo el mantenimiento',
+        removeUpkeepInvalid : 'El mantenimiento no puede ser removido',
+        loadUpkeepsError : 'Ha ocurrido un error cargando los mantenimientos.',
+        loadBioProcessesError : 'Ha ocurrido un error cargando los Tipos de Equipos',
         loadActionsError: 'Ha ocurrido un error cargando las acciones',
-        roleNameRequired: 'Por favor ingrese un nombre para el rol',
-        factorNameRequired : 'Por favor ingrese un nombre para el factor',
-        loadFactorsError : 'Ha ocurrido un error cargando los factores',
-        removeFactorInvalid : 'El factor no puede ser removido',
-        removeFactorError : 'Ha ocurrido un error removiendo el factor',
+        fieldsRequired: 'Por favor ingrese todos los datos.',
+        factorNameRequired : 'Por favor ingrese un nombre para el Equipo',
+        loadEquipmentsError : 'Ha ocurrido un error cargando los Equipos',
+        removeEquipmentInvalid : 'El equipo no puede ser removido',
+        removeEquipmentError : 'Ha ocurrido un error removiendo el Equipo',
         loadUsersError : 'Ha ocurrido un error cargando los usuarios',
         loadDataError : 'Ha ocurrido un error cargando los datos',
         loadCalculationsError: 'Ha ocurrido un error cargando los calculos',
@@ -65,27 +65,31 @@ bioPredictorApp.factory('configFactory', function() {
         addDataError : 'Ha ocurrido un error guardando los datos',
         removeDataInvalid : 'Los datos no pueden ser removidos',
         removeDataError : 'Ha ocurrido un error removiendo los datos',
-        removeBioProcessError : 'Ha ocurrido un error removiendo el BioProceso',
-        removeBioProcessInvalid : 'El BioProceso no puede ser removido',
+        removeEquipmentTypeError : 'Ha ocurrido un error removiendo el Tipo de Equipo',
+        removeEquipmentTypeInvalid : 'El tipo de equipo no pudo ser removido',
         invalidRangeOfDates : 'El Rango de fechas es invalido',
         invalidBioProcess : 'El Bio Proceso seleccionado es invalido',
         bioProcessAddSuccess : 'El BioProceso ha sido agregado exitosamente',
         calculationAddSuccess : 'El Calculo ha sido registrado exitosamente',
         loadProcessRegistersError : 'Ha ocurrido un Error cargando los registros del Bio Proceso',
+        noUpkeep : 'No se ha realizado ningun mantenimiento.',
+        equipmentTypeRequired : 'El tipo de equipo es requerido.',
+        equipmentCodeRequired : 'El código del equipo es requerido.',
 
         //Success
         companyAddSuccess : 'La compañía ha sido agregada exitosamente',
         companyRemoveSucess : 'La compañía ha sido removida exitosamente',
-        roleRemoveSuccess : 'El rol ha sido removido exitosamente',
+        upkeepRemoveSuccess : 'El mantenimiento ha sido removido exitosamente',
         roleAddSuccess : 'El rol ha sido agregado exitosamente',
-        factorAddSuccess : 'El factor ha sido agregado exitosamente',
-        factorRemoveSuccess : 'El factor ha sido removido exitosamente',
+        factorAddSuccess : 'El mantenimiento ha sido registrado exitosamente.',
+        equipmentRemoveSuccess : 'El Equipo ha sido removido exitosamente',
         userAddSuccess : 'El usuario ha sido modificado exitosamente',
         removeUserSuccess : 'El usuario ha sido removido exitosamente',
         addDataSuccess : 'Los datos han sido agregados exitosamente',
         dataRemoveSucess : 'Los datos han sido removidos exitosamente',
-        bioProcessRemoveSuccess : 'El BioProceso ha sido removido exitosamente',
-        bioProcessNameRequired : 'El nombre del BioProceso es requerido'
+        equipmentTypeRemoveSuccess : 'El tipo de equipo ha sido removido exitosamente',
+        bioProcessNameRequired : 'El nombre del BioProceso es requerido',
+        equipmentAddSuccess : 'El equipo ha sido registrado exitosamente.',
     };
 
     /**
@@ -134,16 +138,16 @@ bioPredictorApp.factory('configFactory', function() {
     // Navigation control variable for menu
     var navBarItems = [
         {
-            text : 'Equipos',
+            text : 'Tipos de Equipos',
             class : 'bp-bio-process',
             state : 'bp-list',
-            icon : './images/icons/bio_procesos_icon.png'
+            icon : './images/icons/tiposEquipos.png'
         },
         {
-            text : 'Tipos de Equipos',
+            text : 'Equipos',
             class : 'bp-factor',
             state : 'factors-list',
-            icon : './images/icons/tiposEquipos.png'
+            icon : './images/icons/bio_procesos_icon.png'
         },
         {
             text : 'Mantenimientos',

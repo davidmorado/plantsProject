@@ -21,10 +21,9 @@ function ($rootScope, $scope, $uibModalInstance, bioProcessesService, sessionSer
         .then(function(pFactors) {
             $scope.systemFactors = pFactors;
             if($scope.bioProcess) {
-                console.log($scope.bioProcess);
+
                 return bioProcessesService.getFactorsXBioProcess($scope.bioProcess);
             } else {
-                console.log("Nada");
                 return [];
             }
         })
@@ -68,7 +67,7 @@ function ($rootScope, $scope, $uibModalInstance, bioProcessesService, sessionSer
         for(var factorIndex = 0; factorIndex < bpFactors.length; factorIndex++) {
             var factor = bpFactors[factorIndex];
 
-            if(factor.factorId === pElement.factorId) {
+            if(factor.attributeId === pElement.attributeId) {
 
                 result = true;
                 break;
@@ -163,7 +162,6 @@ function ($rootScope, $scope, $uibModalInstance, bioProcessesService, sessionSer
      * @return {[type]} [description]
      */
     var mergeFactors = function () {
-
         $scope.displayFactors = [];
 
         for(var factorIndex = 0; factorIndex < $scope.systemFactors.length; factorIndex++) {
@@ -192,13 +190,14 @@ function ($rootScope, $scope, $uibModalInstance, bioProcessesService, sessionSer
         var selectedFactors = [];
         var displayFactors = $scope.displayFactors;
 
+
         for(var factorIndex = 0; factorIndex < displayFactors.length; factorIndex++) {
 
             var factor = displayFactors[factorIndex];
 
             // Enter the selected factor on new array
             if(factor.class) {
-                selectedFactors.push(factor.factorId);
+                selectedFactors.push(factor.attributeId);
             }
         }
 

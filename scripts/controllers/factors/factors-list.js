@@ -14,9 +14,9 @@ bioPredictorApp.controller('listFactorsController', ['$scope', '$rootScope', '$s
     $rootScope.isMenu = false;
 
     $scope.modalActions = {
-        add: "Agregar Factor",
-        edit: "Editar Factor",
-        view: "Ver Factor"
+        add: "Agregar Equipo",
+        edit: "Realizar Mantenimiento",
+        view: "Ver Equipo"
     };
 
     $scope.permissions = {
@@ -64,13 +64,13 @@ bioPredictorApp.controller('listFactorsController', ['$scope', '$rootScope', '$s
 
       $rootScope.displayLoading();
 
-      factorsService.getFactors()
+      factorsService.getEquipments()
       .then(function(pFactors) {
         $scope.factors = pFactors;
         $rootScope.hideLoading();
       })
       .catch(function(pError) {
-        displayError($rootScope.returnMessages.loadFactorsError);
+        displayError($rootScope.returnMessages.loadEquipmentsError);
         $rootScope.hideLoading();
       });
     };
@@ -125,18 +125,37 @@ bioPredictorApp.controller('listFactorsController', ['$scope', '$rootScope', '$s
         }
     };
 
+    $scope.displayModal2 = function (pModalAction, pFactor) {
+
+        // if(($scope.permissions.addFactor.enabled && pModalAction === $scope.modalActions.add) ||
+        // (pModalAction === $scope.modalActions.view)) {
+
+          $scope.currentAction = pModalAction;
+
+          // Set factor on edit
+          if($scope.currentAction != $scope.modalActions.add) {
+            $scope.factor = pFactor;
+          } else {
+            $scope.factor = null;
+          }
+
+          var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/factors/doUpkeep.html',
+            controller: 'doUpkeepController',
+            scope: $scope
+          });
+
+        // }
+    };
+
     /**
      * Sends the request to te service to remove a factor
      * @param  {[type]} pFactor [description]
      * @return {[type]}          [description]
      */
-    $scope.removeFactor = function (pFactor) {
-
-      if(!$scope.permissions.removeFactor.enabled) {
-        return;
-      }
-
-      $scope.removeObject = pFactor;
+    $scope.removeEquipment = function (pEquipment) {
+      $scope.removeObject = pEquipment;
       $scope.removeModalInstance = $uibModal.open({
         animation: true,
         templateUrl: 'views/modals/removeConfirm.html',
@@ -154,19 +173,19 @@ bioPredictorApp.controller('listFactorsController', ['$scope', '$rootScope', '$s
 
       $rootScope.displayLoading();
 
-      factorsService.removeFactor($scope.removeObject)
+      factorsService.removeEquipment($scope.removeObject)
       .then(function(pResult) {
 
         if(pResult.removed) {
-          displaySuccess($rootScope.returnMessages.factorRemoveSuccess);
+          displaySuccess($rootScope.returnMessages.equipmentRemoveSuccess);
           $scope.loadFactors();
         } else {
-          displayError($rootScope.returnMessages.removeFactorInvalid);
+          displayError($rootScope.returnMessages.removeEquipmentInvalid);
         }
       })
       .catch(function(pError) {
         console.log(pError);
-        displayError($rootScope.returnMessages.removeFactorError);
+        displayError($rootScope.returnMessages.removeEquipmentError);
       })
       .finally(function() {
         $rootScope.hideLoading();

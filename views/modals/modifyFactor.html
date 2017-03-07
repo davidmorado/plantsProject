@@ -14,11 +14,45 @@
         <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
       </div>
       <form class="bp-modal-form">
-        <label>Nombre</label>
-        <input ng-model="factor.name">
-        <label >Descripción</label>
-        <textarea ng-model="factor.description"></textarea>
+          <label>Tipo de Equipo</label>
+        <select id="select1" ng-model="selectedEquipmentType" ng-options="equipment.name for equipment in equipmentTypes" ng-change="updateAttributes(equipment)" >
+        </select>
+
+        <label>Código del Equipo</label>
+        <input ng-model="factor.code">
+
+        <label>Marca</label>
+        <input ng-model="factor.brand">
+
+        <label>Modelo</label>
+        <input ng-model="factor.model">
+
+        <label>Unidad de Tratamiento</label>
+        <input ng-model="factor.treatmentUnit">
+
+        <label>Voltaje Nominal</label>
+        <input ng-model="factor.voltage" type="number">
+
+        <label>Amperios Nominal</label>
+        <input ng-model="factor.ampers" type="number">
+
+        <label>Potencia Nominal</label>
+        <input ng-model="factor.potence" type="number">
+
+        
+
+<!-- 
+        <label >Atributos</label>
+        <ul class="bp-top-spaced">
+          <li class="list-group-item" ng-class="attribute.class" ng-repeat="attribute in attributes track by $index">
+              <input type="number"  min="1" max="5" ng-model="values[$index]">
+              {{attribute.name}}</li>
+        </ul> -->
+
+
       </form>
+
+
     </div>
     <div class="modal-footer">
       <div align="center">

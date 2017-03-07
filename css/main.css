@@ -187,7 +187,7 @@ html * {
 }
 
 .bp-calculation {
-  background-color: #94C57D;
+  background-color: #E2DA47;/*#94C57D;*/
 }
 
 .bp-log-out {
@@ -599,4 +599,10 @@ html * {
 .bp-forgot-pass a {
   color: #6ACCCB;
   font-size: 15px;
+}
+
+canvas {
+    margin: 0;
+   padding: 0;
+   border: 0 !important;
 }

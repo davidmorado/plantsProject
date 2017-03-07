@@ -14,9 +14,9 @@ bioPredictorApp.controller('listRolesController', ['$scope', '$rootScope', '$sta
     $rootScope.isMenu = false;
 
     $scope.modalActions = {
-        add: "Agregar Rol",
-        edit: "Editar Rol",
-        view: "Ver Rol"
+        add: "Crear Mantenimiento",
+        edit: "Editar Mantenimiento",
+        view: "Exportar"
     };
 
     $scope.permissions = {
@@ -130,18 +130,40 @@ bioPredictorApp.controller('listRolesController', ['$scope', '$rootScope', '$sta
         }
     };
 
+        $scope.displaySecondModal = function (pModalAction, pRole) {
+
+
+        if(($scope.permissions.addRole.enabled && pModalAction === $scope.modalActions.add) ||
+        (pModalAction === $scope.modalActions.view)) {
+
+          $scope.currentAction = pModalAction;
+
+          // Set company on edit
+          if($scope.currentAction != $scope.modalActions.add) {
+            $scope.role = pRole;
+          } else {
+            $scope.role = null;
+          }
+
+          var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/roles/modifyRole2.html',
+            controller: 'modifyRoleController2',
+            scope: $scope
+          });
+
+        }
+    };
+
     /**
      * Sends the request to te service to remove a role
      * @param  {[type]} pRole [The role to be removed]
      * @return {[type]}          [description]
      */
-    $scope.removeRole = function (pRole) {
+    $scope.removeUpkeep = function (pUpkeep) {
 
-      if(!$scope.permissions.removeRole.enabled){
-        return;
-      }
 
-      $scope.removeObject = pRole;
+      $scope.removeObject = pUpkeep;
       $scope.removeModalInstance = $uibModal.open({
         animation: true,
         templateUrl: 'views/modals/removeConfirm.html',
@@ -158,19 +180,19 @@ bioPredictorApp.controller('listRolesController', ['$scope', '$rootScope', '$sta
     $scope.remove = function () {
 
       $rootScope.displayLoading();
-      rolesService.removeRole($scope.removeObject)
+      rolesService.removeUpkeep($scope.removeObject)
       .then(function(pResult) {
 
         if(pResult.removed) {
-          displaySuccess($rootScope.returnMessages.roleRemoveSuccess);
+          displaySuccess($rootScope.returnMessages.upkeepRemoveSuccess);
           $scope.loadRoles();
         } else {
-          displayError($rootScope.returnMessages.removeRoleInvalid);
+          displayError($rootScope.returnMessages.removeUpkeepInvalid);
         }
       })
       .catch(function(pError) {
         console.log(pError);
-        displayError($rootScope.returnMessages.removeRoleError);
+        displayError($rootScope.returnMessages.removeUpkeepError);
       })
       .finally(function() {
         $rootScope.hideLoading();
@@ -193,6 +215,7 @@ bioPredictorApp.controller('listRolesController', ['$scope', '$rootScope', '$sta
             $scope.successMessage = '';
         }
     };
+
 
     init();
 

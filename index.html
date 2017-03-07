@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="./node_modules/angular-datepicker/dist/index.min.css"/>
         <link rel="stylesheet" type="text/css" href="./css/main.css"/>
+                <script type="text/javascript" src="jspdf.min.js"></script>
         <!-- Styles -->
     </head>
     <body>
@@ -68,8 +69,50 @@
         <script src="./node_modules/angular-datepicker/dist/index.min.js"></script>
 
 
-
         <script src="./js/main.js"></script>
         <!-- Scripts -->
-    </body>
+
+        <script type="text/javascript">
+
+            function genPDF(pName){
+
+
+                var doc=new jsPDF();
+
+                var canvas = document.getElementById('myCanvas');
+                var dataURL = canvas.toDataURL();
+                doc.addImage(dataURL,'JPEG',10,1,180,100);
+                doc.setFontSize(20);
+                doc.setFont("cambria");
+                doc.text(40,60,'Informe de Mantenimiento Preventivo');
+                doc.setFontSize(11);
+                doc.text(15,75,'Unidad de Tratamiento:');
+                doc.text(15,80,'Tipo de Equipo:');
+                doc.text(15,85,'Modelo:');
+                doc.text(15,90,'Marca:');
+                doc.text(15,95,'Voltaje Nominal:');
+                doc.text(80,90,'Amperios Nominal:');
+                doc.text(80,95,'Potencia Nominal:');
+                doc.text(130,75,'Código:');
+                doc.save('Aminsa.pdf');
+                
+
+
+             }
+
+        </script>
+
+        <canvas id="myCanvas" width="750" height="400" style="display:none" style="border: 0" ></canvas>
+        <script>
+          var canvas = document.getElementById('myCanvas');
+          var context = canvas.getContext('2d');
+          var imageObj = new Image();
+
+          imageObj.onload = function() {
+            context.drawImage(imageObj, 10, 50);
+          };
+          imageObj.src = 'images/aminsa.jpg';
+        </script>
+
+</body>
 </html>

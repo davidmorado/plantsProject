@@ -18,8 +18,12 @@ bioPredictorApp.service('factorsService', function(configFactory, request) {
      * @param  {Objct} pFactor [The factor to be added]
      * @return {Object}       [The result from request]
      */
-    this.addFactor = function(pFactor) {
-        return request.post(factorsUrl + 'addFactor', pFactor);
+    this.addEquipment = function(pFactor) {
+        return request.post(factorsUrl + 'addEquipment', pFactor);
+    };
+
+    this.doUpkeep = function(pFactor) {
+        return request.post(factorsUrl + 'doUpkeep', pFactor);
     };
 
     /**
@@ -30,6 +34,18 @@ bioPredictorApp.service('factorsService', function(configFactory, request) {
         return request.get(factorsUrl + 'getFactors');
     };
 
+    this.getEquipments = function() {
+        return request.get(factorsUrl + 'getEquipments');
+    };
+
+    this.getAttributesXEquipmentType = function(pEquipmentType) {
+        return request.post(factorsUrl + 'getAttributesXEquipmentType', pEquipmentType);
+    };
+
+    this.getUpkeepsXEquipmentType = function(pEquipmentType) {
+        return request.post(factorsUrl + 'getUpkeepsXEquipmentType', pEquipmentType);
+    };
+    
     /**
      * Gets the list of factors form Server
      * @return {Object} [The list of factors obtained]
@@ -44,12 +60,17 @@ bioPredictorApp.service('factorsService', function(configFactory, request) {
      * factor to be removed]
      * @return {Object}            [The factor object removed]
      */
-    this.removeFactor = function(pFactor) {
-        return request.post(factorsUrl + 'removeFactor', pFactor);
+    this.removeEquipment = function(pEquipment) {
+        return request.post(factorsUrl + 'removeEquipment', pEquipment);
     };
 
 
     this.getFactorsReport = function(pCompany) {
         return request.post(factorsUrl + 'getFactorsReport', pCompany);
     };
+    
+        this.getEquipmentTypes = function() {
+        return request.get(factorsUrl + 'getEquipmentTypes');
+    };
+    
 });

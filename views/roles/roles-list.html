@@ -7,13 +7,31 @@
         <a href="#" class="close" aria-label="close" ng-click="clearAlert(false)" >&times;</a>
         <strong>Éxito:</strong> <span class="bp-alert-message"> {{successMessage}} <span>
     </div>
+
     <div class="bp-square-list">
-        <div class="bp-square-item-small bp-common-square bp-square-item-large" ng-click="displayModal(modalActions.add)"
-            ng-class="permissions.addRole.class">
-            <img ng-src="./images/icons/add_icon.png" >
-            <span>Agregar Rol</span>
+        <div class="bp-square-item-small bp-common-square" ng-click="displayModal(modalActions.add)" ng-class="permissions.addRole.class">
+            <img ng-src="./images/icons/add_icon.png">
+            <span>Crear Mantenimiento</span>
+        </div>
+        <div class="bp-square-item-small bp-common-square-blue" ng-click="displaySecondModal(modalActions.view)"
+            ng-class="permissions.addUser.class">
+            <img ng-src="./images/icons/mi_perfil_icon.png">
+            <span>Exportar Pdf</span>
         </div>
     </div>
+
+
+
+
+
+
+
+
+    
+
+
+
+
     <div class="bp-search-bar-container bp-data">
         <div class="col-lg-6 bp-search-bar">
             <div class="input-group">
@@ -35,13 +53,13 @@
                     </div>
                 </div>
                 <div class="bp-list-item-mid bp-list-item-icons">
-                    <img src="./images/icons/delete_icon.png" ng-click="removeRole(role)" ng-class="permissions.removeRole.class">
+                    <img src="./images/icons/delete_icon.png" ng-click="removeUpkeep(role)" ng-class="permissions.removeRole.class">
                     <img src="./images/icons/view_icon.png" ng-click="displayModal(modalActions.view, role)">
                 </div>
             </div>
         </div>
         <div ng-show="!permissions.viewListRole.enabled" class="bp-list-msg">
-            <p>El usuario no tiene permisos para ver la lista de roles</p>
+            <p>El usuario no tiene permisos para ver la lista de Mantenimientos</p>
         </div>
     </div>
 </div>

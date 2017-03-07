@@ -21,16 +21,14 @@ module.exports = function(app) {
          * @param  {Object} pBody    [The request body obtained]
          */
         addBioProcess : function (pResponse, pBody) {
-
+            console.log(pBody);
             var result = {};
             // Add query params
             var query = procedures.addBioProcess.callStr;
             query = query.replace(procedures.addBioProcess.params.name, pBody.name);
-            query = query.replace(procedures.addBioProcess.params.description, pBody.description);
-            query = query.replace(procedures.addBioProcess.params.registerUserId, pBody.registerUserId);
-            query = query.replace(procedures.addBioProcess.params.companyId, pBody.companyId);
             query = query.replace(procedures.addBioProcess.params.factorIds, pBody.factorIds);
             var connection = commonFunctions.createConnection(app);
+            console.log(pBody);
             console.log(query);
             connection.connect(function(err) {
 
@@ -117,11 +115,11 @@ module.exports = function(app) {
          * @param  {Object} pBody     [description]
          * @return {[type]}           [description]
          */
-        removeBioProcess : function (pResponse, pBody) {
+        removeEquipmentType : function (pResponse, pBody) {
             var result = {};
             // Add query params
-            var query = procedures.removeBioProcess.callStr;
-            query = query.replace(procedures.removeBioProcess.params.bioProcessId, pBody.processId);
+            var query = procedures.removeEquipmentType.callStr;
+            query = query.replace(procedures.removeEquipmentType.params.equipmentTypeId, pBody.equipmentTypeId);
             var connection = commonFunctions.createConnection(app);
             connection.connect(function(err) {
 

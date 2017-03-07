@@ -112,6 +112,7 @@ bioPredictorApp.controller('listBioProcessesController', ['$scope', '$rootScope'
         // Set company on edit
         if($scope.currentAction != $scope.modalActions.add) {
           $scope.bioProcess = pBioProcess;
+
         } else {
           $scope.bioProcess = null;
         }
@@ -150,13 +151,10 @@ bioPredictorApp.controller('listBioProcessesController', ['$scope', '$rootScope'
      * @param  {[type]} pFactor [description]
      * @return {[type]}          [description]
      */
-    $scope.removeBioProcess = function (pBioProcess) {
+    $scope.removeEquipmentType = function (pEquipmentType) {
 
-      if(!$scope.permissions.removeBioProcess.enabled ) {
-        return;
-      }
 
-      $scope.removeObject = pBioProcess;
+      $scope.removeObject = pEquipmentType;
       $scope.removeModalInstance = $uibModal.open({
         animation: true,
         templateUrl: 'views/modals/removeConfirm.html',
@@ -173,18 +171,18 @@ bioPredictorApp.controller('listBioProcessesController', ['$scope', '$rootScope'
     $scope.remove = function () {
 
       $rootScope.displayLoading();
-      bioProcessesService.removeBioProcess($scope.removeObject)
+      bioProcessesService.removeEquipmentType($scope.removeObject)
       .then(function(pResult) {
         if(pResult.removed == 1) {
-          displaySuccess($rootScope.returnMessages.bioProcessRemoveSuccess);
+          displaySuccess($rootScope.returnMessages.equipmentTypeRemoveSuccess);
           $scope.loadBioProcesses();
         } else {
-          displayError($rootScope.returnMessages.removeBioProcessInvalid);
+          displayError($rootScope.returnMessages.removeEquipmentTypeInvalid);
         }
       })
       .catch(function(pError) {
         console.log(pError);
-        displayError($rootScope.returnMessages.removeBioProcessError);
+        displayError($rootScope.returnMessages.removeEquipmentTypeError);
       })
       .finally(function() {
         $rootScope.hideLoading();

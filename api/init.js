@@ -122,25 +122,45 @@ module.exports = function(app) {
 
                 //FACTOR MODULE ENDPOINTS
 
-                app.post('/api/factor/addFactor', function(req, res) {
-                    return app.implementors.factor.addFactor(res,req.body);
+                app.post('/api/factor/addEquipment', function(req, res) {
+                    return app.implementors.factor.addEquipment(res,req.body);
+                });
+
+                app.post('/api/factor/doUpkeep', function(req, res) {
+                    return app.implementors.factor.doUpkeep(res,req.body);
                 });
 
                 app.get('/api/factor/getFactors', function(req, res) {
                     return app.implementors.factor.getFactors(res);
                 });
 
+                app.get('/api/factor/getEquipments', function(req, res) {
+                    return app.implementors.factor.getEquipments(res);
+                });
+
+                app.post('/api/factor/getAttributesXEquipmentType', function(req, res) {
+                    return app.implementors.factor.getAttributesXEquipmentType(res, req.body);
+                });
+
+                app.post('/api/factor/getUpkeepsXEquipmentType', function(req, res) {
+                    return app.implementors.factor.getUpkeepsXEquipmentType(res, req.body);
+                });
+
                 app.get('/api/factor/viewFactors', function(req, res) {
                     return app.implementors.factor.viewFactors(res);
                 });
 
-                app.post('/api/factor/removeFactor', function(req, res) {
-                    return app.implementors.factor.removeFactor(res,req.body);
+                app.post('/api/factor/removeEquipment', function(req, res) {
+                    return app.implementors.factor.removeEquipment(res,req.body);
                 });
 
                 app.post('/api/factor/getFactorsReport', function(req, res) {
                     return app.implementors.factor.getFactorsReport(res,req.body);
                 });
+                app.get('/api/factor/getEquipmentTypes', function(req, res) {
+                    return app.implementors.factor.getEquipmentTypes(res);
+                });
+
                 // ROLE MODULE ENDPOINTS
 
                 app.get('/api/role/getRoles', function(req, res) {
@@ -151,8 +171,8 @@ module.exports = function(app) {
                     return app.implementors.role.getActions(res,req.body);
                 });
 
-                app.post('/api/role/removeRole', function(req, res) {
-                    return app.implementors.role.removeRole(res,req.body);
+                app.post('/api/role/removeUpkeep', function(req, res) {
+                    return app.implementors.role.removeUpkeep(res,req.body);
                 });
 
                 app.post('/api/role/getActionsXRole', function(req, res) {
@@ -166,6 +186,12 @@ module.exports = function(app) {
                 app.post('/api/role/getRolesByUserId', function(req, res) {
                     return app.implementors.role.getRolesByUserId(res, req.body);
                 });
+
+                app.post('/api/role/getUpkeepsXDate', function(req, res) {
+                    return app.implementors.role.getUpkeepsXDate(res, req.body);
+                });
+
+
 
                 //BIOPROCESS MODULE ENDPOINTS
 
@@ -181,8 +207,8 @@ module.exports = function(app) {
                     return app.implementors.factor.getFactors(res);
                 });
 
-                app.post('/api/bioProcess/removeBioProcess', function(req, res) {
-                    return app.implementors.bioProcess.removeBioProcess(res,req.body);
+                app.post('/api/bioProcess/removeEquipmentType', function(req, res) {
+                    return app.implementors.bioProcess.removeEquipmentType(res,req.body);
                 });
 
                 app.post('/api/bioProcess/getFactorsXBioProcess', function(req, res) {

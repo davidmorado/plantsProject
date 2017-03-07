@@ -267,16 +267,16 @@ bioPredictorApp.factory('configFactory', function() {
         loadCompaniesError : 'Ha ocurrido un error cargando las compañías',
         removeCompanyError : 'Ha ocurrido un error removiendo la compañía',
         removeCompanyInvalid : 'La compañía no puede ser removida',
-        removeRoleError: 'Ha ocurrido un error removiendo el rol',
-        removeRoleInvalid : 'El rol no puede ser removido',
-        loadRolesError : 'Ha ocurrido un error cargando los roles',
-        loadBioProcessesError : 'Ha ocurrido un error cargando los Bio Procesos',
+        removeUpkeepError: 'Ha ocurrido un error removiendo el mantenimiento',
+        removeUpkeepInvalid : 'El mantenimiento no puede ser removido',
+        loadUpkeepsError : 'Ha ocurrido un error cargando los mantenimientos.',
+        loadBioProcessesError : 'Ha ocurrido un error cargando los Tipos de Equipos',
         loadActionsError: 'Ha ocurrido un error cargando las acciones',
-        roleNameRequired: 'Por favor ingrese un nombre para el rol',
-        factorNameRequired : 'Por favor ingrese un nombre para el factor',
-        loadFactorsError : 'Ha ocurrido un error cargando los factores',
-        removeFactorInvalid : 'El factor no puede ser removido',
-        removeFactorError : 'Ha ocurrido un error removiendo el factor',
+        fieldsRequired: 'Por favor ingrese todos los datos.',
+        factorNameRequired : 'Por favor ingrese un nombre para el Equipo',
+        loadEquipmentsError : 'Ha ocurrido un error cargando los Equipos',
+        removeEquipmentInvalid : 'El equipo no puede ser removido',
+        removeEquipmentError : 'Ha ocurrido un error removiendo el Equipo',
         loadUsersError : 'Ha ocurrido un error cargando los usuarios',
         loadDataError : 'Ha ocurrido un error cargando los datos',
         loadCalculationsError: 'Ha ocurrido un error cargando los calculos',
@@ -291,27 +291,31 @@ bioPredictorApp.factory('configFactory', function() {
         addDataError : 'Ha ocurrido un error guardando los datos',
         removeDataInvalid : 'Los datos no pueden ser removidos',
         removeDataError : 'Ha ocurrido un error removiendo los datos',
-        removeBioProcessError : 'Ha ocurrido un error removiendo el BioProceso',
-        removeBioProcessInvalid : 'El BioProceso no puede ser removido',
+        removeEquipmentTypeError : 'Ha ocurrido un error removiendo el Tipo de Equipo',
+        removeEquipmentTypeInvalid : 'El tipo de equipo no pudo ser removido',
         invalidRangeOfDates : 'El Rango de fechas es invalido',
         invalidBioProcess : 'El Bio Proceso seleccionado es invalido',
         bioProcessAddSuccess : 'El BioProceso ha sido agregado exitosamente',
         calculationAddSuccess : 'El Calculo ha sido registrado exitosamente',
         loadProcessRegistersError : 'Ha ocurrido un Error cargando los registros del Bio Proceso',
+        noUpkeep : 'No se ha realizado ningun mantenimiento.',
+        equipmentTypeRequired : 'El tipo de equipo es requerido.',
+        equipmentCodeRequired : 'El código del equipo es requerido.',
 
         //Success
         companyAddSuccess : 'La compañía ha sido agregada exitosamente',
         companyRemoveSucess : 'La compañía ha sido removida exitosamente',
-        roleRemoveSuccess : 'El rol ha sido removido exitosamente',
+        upkeepRemoveSuccess : 'El mantenimiento ha sido removido exitosamente',
         roleAddSuccess : 'El rol ha sido agregado exitosamente',
-        factorAddSuccess : 'El factor ha sido agregado exitosamente',
-        factorRemoveSuccess : 'El factor ha sido removido exitosamente',
+        factorAddSuccess : 'El mantenimiento ha sido registrado exitosamente.',
+        equipmentRemoveSuccess : 'El Equipo ha sido removido exitosamente',
         userAddSuccess : 'El usuario ha sido modificado exitosamente',
         removeUserSuccess : 'El usuario ha sido removido exitosamente',
         addDataSuccess : 'Los datos han sido agregados exitosamente',
         dataRemoveSucess : 'Los datos han sido removidos exitosamente',
-        bioProcessRemoveSuccess : 'El BioProceso ha sido removido exitosamente',
-        bioProcessNameRequired : 'El nombre del BioProceso es requerido'
+        equipmentTypeRemoveSuccess : 'El tipo de equipo ha sido removido exitosamente',
+        bioProcessNameRequired : 'El nombre del BioProceso es requerido',
+        equipmentAddSuccess : 'El equipo ha sido registrado exitosamente.',
     };
 
     /**
@@ -360,16 +364,16 @@ bioPredictorApp.factory('configFactory', function() {
     // Navigation control variable for menu
     var navBarItems = [
         {
-            text : 'Equipos',
+            text : 'Tipos de Equipos',
             class : 'bp-bio-process',
             state : 'bp-list',
-            icon : './images/icons/bio_procesos_icon.png'
+            icon : './images/icons/tiposEquipos.png'
         },
         {
-            text : 'Tipos de Equipos',
+            text : 'Equipos',
             class : 'bp-factor',
             state : 'factors-list',
-            icon : './images/icons/tiposEquipos.png'
+            icon : './images/icons/bio_procesos_icon.png'
         },
         {
             text : 'Mantenimientos',
@@ -568,8 +572,8 @@ bioPredictorApp.service('bioProcessesService', function(configFactory, request) 
      * bioProcess to be removed]
      * @return {Object}            [The bioProcess object removed]
      */
-    this.removeBioProcess = function(pBioProcess) {
-        return request.post(bioProcessesUrl + 'removeBioProcess', pBioProcess);
+    this.removeEquipmentType = function(pEquipmentType) {
+        return request.post(bioProcessesUrl + 'removeEquipmentType', pEquipmentType);
     };
 
         /**
@@ -806,8 +810,12 @@ bioPredictorApp.service('factorsService', function(configFactory, request) {
      * @param  {Objct} pFactor [The factor to be added]
      * @return {Object}       [The result from request]
      */
-    this.addFactor = function(pFactor) {
-        return request.post(factorsUrl + 'addFactor', pFactor);
+    this.addEquipment = function(pFactor) {
+        return request.post(factorsUrl + 'addEquipment', pFactor);
+    };
+
+    this.doUpkeep = function(pFactor) {
+        return request.post(factorsUrl + 'doUpkeep', pFactor);
     };
 
     /**
@@ -818,6 +826,18 @@ bioPredictorApp.service('factorsService', function(configFactory, request) {
         return request.get(factorsUrl + 'getFactors');
     };
 
+    this.getEquipments = function() {
+        return request.get(factorsUrl + 'getEquipments');
+    };
+
+    this.getAttributesXEquipmentType = function(pEquipmentType) {
+        return request.post(factorsUrl + 'getAttributesXEquipmentType', pEquipmentType);
+    };
+
+    this.getUpkeepsXEquipmentType = function(pEquipmentType) {
+        return request.post(factorsUrl + 'getUpkeepsXEquipmentType', pEquipmentType);
+    };
+    
     /**
      * Gets the list of factors form Server
      * @return {Object} [The list of factors obtained]
@@ -832,14 +852,19 @@ bioPredictorApp.service('factorsService', function(configFactory, request) {
      * factor to be removed]
      * @return {Object}            [The factor object removed]
      */
-    this.removeFactor = function(pFactor) {
-        return request.post(factorsUrl + 'removeFactor', pFactor);
+    this.removeEquipment = function(pEquipment) {
+        return request.post(factorsUrl + 'removeEquipment', pEquipment);
     };
 
 
     this.getFactorsReport = function(pCompany) {
         return request.post(factorsUrl + 'getFactorsReport', pCompany);
     };
+    
+        this.getEquipmentTypes = function() {
+        return request.get(factorsUrl + 'getEquipmentTypes');
+    };
+    
 });
 
 // *
@@ -877,8 +902,8 @@ bioPredictorApp.service('rolesService', function(configFactory, request)
      * @param  {Object} pRole [The role to be removed]
      * @return {Object}            [The role object removed]
      */
-    this.removeRole = function(pRole) {
-        return request.post(rolesURL + 'removeRole', pRole);
+    this.removeUpkeep = function(pUpkeep) {
+        return request.post(rolesURL + 'removeUpkeep', pUpkeep);
     };
 
     /**
@@ -914,6 +939,11 @@ bioPredictorApp.service('rolesService', function(configFactory, request)
     this.getRolesByUserId = function(pUser) {
         return request.post(rolesURL + 'getRolesByUserId', pUser);
     };
+
+    this.getUpkeepsXDate = function(pUser) {
+        return request.post(rolesURL + 'getUpkeepsXDate', pUser);
+    };
+
 
 });
 
@@ -1191,6 +1221,7 @@ bioPredictorApp.controller('listBioProcessesController', ['$scope', '$rootScope'
         // Set company on edit
         if($scope.currentAction != $scope.modalActions.add) {
           $scope.bioProcess = pBioProcess;
+
         } else {
           $scope.bioProcess = null;
         }
@@ -1229,13 +1260,10 @@ bioPredictorApp.controller('listBioProcessesController', ['$scope', '$rootScope'
      * @param  {[type]} pFactor [description]
      * @return {[type]}          [description]
      */
-    $scope.removeBioProcess = function (pBioProcess) {
+    $scope.removeEquipmentType = function (pEquipmentType) {
 
-      if(!$scope.permissions.removeBioProcess.enabled ) {
-        return;
-      }
 
-      $scope.removeObject = pBioProcess;
+      $scope.removeObject = pEquipmentType;
       $scope.removeModalInstance = $uibModal.open({
         animation: true,
         templateUrl: 'views/modals/removeConfirm.html',
@@ -1252,18 +1280,18 @@ bioPredictorApp.controller('listBioProcessesController', ['$scope', '$rootScope'
     $scope.remove = function () {
 
       $rootScope.displayLoading();
-      bioProcessesService.removeBioProcess($scope.removeObject)
+      bioProcessesService.removeEquipmentType($scope.removeObject)
       .then(function(pResult) {
         if(pResult.removed == 1) {
-          displaySuccess($rootScope.returnMessages.bioProcessRemoveSuccess);
+          displaySuccess($rootScope.returnMessages.equipmentTypeRemoveSuccess);
           $scope.loadBioProcesses();
         } else {
-          displayError($rootScope.returnMessages.removeBioProcessInvalid);
+          displayError($rootScope.returnMessages.removeEquipmentTypeInvalid);
         }
       })
       .catch(function(pError) {
         console.log(pError);
-        displayError($rootScope.returnMessages.removeBioProcessError);
+        displayError($rootScope.returnMessages.removeEquipmentTypeError);
       })
       .finally(function() {
         $rootScope.hideLoading();
@@ -1685,6 +1713,403 @@ bioPredictorApp.controller('listCompaniesController', ['$scope', '$rootScope', '
       .catch(function(pError) {
         console.log(pError);
         displayError($rootScope.returnMessages.removeCompanyError);
+      })
+      .finally(function() {
+        $rootScope.hideLoading();
+        $scope.removeObject = {};
+        $scope.removeModalInstance.dismiss();
+      });
+    };
+
+    /**
+     * Clears the alerts handler
+     * @return {void} []
+     */
+    $scope.clearAlert = function (pIsError) {
+
+        if(pIsError) {
+            $scope.error = false;
+            $scope.errorMessage = '';
+        } else {
+            $scope.success = false;
+            $scope.successMessage = '';
+        }
+    };
+
+    init();
+
+}]);
+
+
+// *
+// * Author:      David Obando Paniagua - dobando2595@gmail.com
+// * Date:        05 Sep 2016
+// * Description: Modify factor controller file
+//
+
+bioPredictorApp.controller('doUpkeepController',['$rootScope','$scope','$uibModalInstance', 'factorsService', 'sessionService','rolesService',
+function ($rootScope, $scope, $uibModalInstance, factorsService, sessionService,rolesService) {
+
+    var init = function () {
+        loadEquipmentTypes();
+        loadUpKeeps();
+        $scope.values = [];
+
+    };
+
+    var loadUpKeeps = function () {
+
+      $rootScope.displayLoading();
+      factorsService.getUpkeepsXEquipmentType($scope.factor)
+      .then(function(pUpkeeps) {
+        $scope.displayUpkeeps = pUpkeeps;
+        $rootScope.hideLoading();
+      })
+      .catch(function(pError) {
+        displayError($rootScope.returnMessages.loadRolesError);
+        $rootScope.hideLoading();
+      });
+    };
+
+    $scope.updateAttributes= function(pEquipmentType){
+
+      $scope.equipmentType = $scope.selectedEquipmentType;
+      loadAttributes();
+    };
+
+    var loadEquipmentTypes = function(){
+
+      factorsService.getEquipmentTypes()
+      .then(function(pEquipmentTypes)
+      {
+        $scope.equipmentTypes = pEquipmentTypes;
+      })
+      .catch(function(pError)
+      {
+        displayError($rootScope.returnMessages.loadBioProcessesError);
+      });
+
+    };
+
+        var loadAttributes = function(){
+
+      factorsService.getAttributesXEquipmentType($scope.equipmentType)
+      .then(function(pAttributes)
+      {
+        $scope.attributes = pAttributes;
+      })
+      .catch(function(pError)
+      {
+        displayError($rootScope.returnMessages.loadBioProcessesError);
+      });
+
+    };
+    /**
+     * Displays error massage on UI
+     * @param  {string} pMessage [The message to be displayed]
+     * @return {[type]}          [description]
+     */
+    var displayError = function(pMessage){
+        $scope.errorMessage = pMessage;
+        $scope.error = true;
+    };
+
+    /**
+     * Displays the success message on UI
+     * @param  {string} pMessage [The message to be displayed]
+     * @return {[type]}          [description]
+     */
+    var displaySuccess = function(pMessage) {
+        $scope.successMessage = pMessage;
+        $scope.success = true;
+    };
+
+    /**
+     * Sends new factor to service
+     * @param {[type]} pCompany [description]
+     */
+    var addFactor = function(pFactor) {
+
+        $rootScope.displayLoading();
+
+        pFactor.upKeepIds = getSelectedUpkeeps();
+
+        factorsService.doUpkeep(pFactor)
+        .then(function(pFactor) {
+
+            if(pFactor && pFactor.factorId != - 1) {
+
+                $scope.factor = null;
+                displaySuccess($rootScope.returnMessages.factorAddSuccess);
+            } else {
+
+                displayError($rootScope.returnMessages.requestError);
+            }
+            $rootScope.hideLoading();
+
+        })
+        .catch(function(pError) {
+            console.log(pError);
+            displayError($rootScope.returnMessages.requestError);
+            $rootScope.hideLoading();
+        });
+    };
+
+    $scope.modifyFactor = function (pFactor) {
+        pFactor.class = (pFactor.class) ? null : 'bp-calculation';
+    };
+    /**
+     * Hanldes the button save action
+     * @return {[type]} [description]
+     */
+    $scope.save = function () {
+
+            var sUpkeeps = getSelectedUpkeeps();
+            if(sUpkeeps.length > 0) {
+                addFactor($scope.factor);
+            } else {
+                displayError($rootScope.returnMessages.noUpkeep);
+            }
+
+    };
+
+    /**
+     * Hides the modal
+     * @return {[type]} [description]
+     */
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
+    /**
+     * Clears the alerts handler
+     * @return {void} []
+     */
+    $scope.clearAlert = function (pIsError) {
+
+        if(pIsError) {
+            $scope.error = false;
+            $scope.errorMessage = '';
+        } else {
+            $scope.success = false;
+            $scope.successMessage = '';
+        }
+    };
+
+    $scope.modifyUpkeep = function (pUpkeep) {
+        pUpkeep.class = (pUpkeep.class) ? null : 'bp-calculation';
+    };
+
+    var getSelectedUpkeeps = function () {
+
+        var selectedUpkeeps = [];
+        var displayUpkeeps = $scope.displayUpkeeps;
+
+
+        for(var factorIndex = 0; factorIndex < displayUpkeeps.length; factorIndex++) {
+
+            var upkeep = displayUpkeeps[factorIndex];
+
+            
+            if(upkeep.class) {
+                selectedUpkeeps.push(upkeep.upkeepId);
+            }
+        }
+
+        return selectedUpkeeps;
+    };
+
+        init();
+}]);
+
+// *
+// * Author:      David Obando Paniagua - dobando2595@gmail.com
+// * Date:        05 Sep 2016
+// * Description: The Factors list controller
+//
+
+'use strict';
+
+// Handles the menu controller logic
+bioPredictorApp.controller('listFactorsController', ['$scope', '$rootScope', '$state', '$uibModal', 'sessionService', 'factorsService',
+  function($scope, $rootScope,$state, $uibModal, sessionService, factorsService) {
+
+    $rootScope.isLogin = false;
+    $rootScope.isMenu = false;
+
+    $scope.modalActions = {
+        add: "Agregar Equipo",
+        edit: "Realizar Mantenimiento",
+        view: "Ver Equipo"
+    };
+
+    $scope.permissions = {
+      addFactor : {
+        enabled : true,
+        class : ''
+      },
+      viewListFactor : {
+        enabled : true,
+        class : ''
+      },
+      removeFactor : {
+        enabled : true,
+        class : ''
+      }
+    };
+
+    /**
+     * Page init function
+     * @return {[type]} [description]
+     */
+    var init = function() {
+
+      // Get all permissions
+      $scope.permissions.viewListFactor.enabled = sessionService.hasAction($rootScope.actions.viewListFactor);
+      $scope.permissions.addFactor.enabled = sessionService.hasAction($rootScope.actions.addFactor);
+      $scope.permissions.removeFactor.enabled = sessionService.hasAction($rootScope.actions.removeFactor);
+
+      $scope.permissions.viewListFactor.class = ($scope.permissions.viewListFactor.enabled) ? 'bp-enabled' : 'bp-disabled';
+      $scope.permissions.addFactor.class = ($scope.permissions.addFactor.enabled) ? 'bp-enabled' : 'bp-disabled';
+      $scope.permissions.removeFactor.class = ($scope.permissions.removeFactor.enabled) ? 'bp-enabled' : 'bp-disabled';
+
+      if($scope.permissions.viewListFactor.enabled) {
+        $scope.loadFactors();
+      }
+
+    };
+
+
+    /**
+     * Inits the Page variables
+     * @return {[type]} [description]
+     */
+    $scope.loadFactors = function () {
+
+      $rootScope.displayLoading();
+
+      factorsService.getEquipments()
+      .then(function(pFactors) {
+        $scope.factors = pFactors;
+        $rootScope.hideLoading();
+      })
+      .catch(function(pError) {
+        displayError($rootScope.returnMessages.loadEquipmentsError);
+        $rootScope.hideLoading();
+      });
+    };
+
+    /**
+     * Displays error massage on UI
+     * @param  {string} pMessage [The message to be displayed]
+     * @return {[type]}          [description]
+     */
+    var displayError = function(pMessage){
+        $scope.errorMessage = pMessage;
+        $scope.error = true;
+    };
+
+    /**
+     * Displays the success message on UI
+     * @param  {string} pMessage [The message to be displayed]
+     * @return {[type]}          [description]
+     */
+    var displaySuccess = function(pMessage) {
+        $scope.successMessage = pMessage;
+        $scope.success = true;
+    };
+
+    /**
+     * Handles the modal display event
+     * @param  {string} pModalAction [The action to be performed]
+     * @param  {Object} pFactor     [The factor object to be used if neccessary]
+     * @return {[type]}              [description]
+     */
+    $scope.displayModal = function (pModalAction, pFactor) {
+
+        if(($scope.permissions.addFactor.enabled && pModalAction === $scope.modalActions.add) ||
+        (pModalAction === $scope.modalActions.view)) {
+
+          $scope.currentAction = pModalAction;
+
+          // Set factor on edit
+          if($scope.currentAction != $scope.modalActions.add) {
+            $scope.factor = pFactor;
+          } else {
+            $scope.factor = null;
+          }
+
+          var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modals/modifyFactor.html',
+            controller: 'modifyFactorController',
+            scope: $scope
+          });
+
+        }
+    };
+
+    $scope.displayModal2 = function (pModalAction, pFactor) {
+
+        // if(($scope.permissions.addFactor.enabled && pModalAction === $scope.modalActions.add) ||
+        // (pModalAction === $scope.modalActions.view)) {
+
+          $scope.currentAction = pModalAction;
+
+          // Set factor on edit
+          if($scope.currentAction != $scope.modalActions.add) {
+            $scope.factor = pFactor;
+          } else {
+            $scope.factor = null;
+          }
+
+          var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/factors/doUpkeep.html',
+            controller: 'doUpkeepController',
+            scope: $scope
+          });
+
+        // }
+    };
+
+    /**
+     * Sends the request to te service to remove a factor
+     * @param  {[type]} pFactor [description]
+     * @return {[type]}          [description]
+     */
+    $scope.removeEquipment = function (pEquipment) {
+      $scope.removeObject = pEquipment;
+      $scope.removeModalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'views/modals/removeConfirm.html',
+        controller: 'removeConfirmController',
+        scope: $scope
+      });
+    };
+
+    /**
+     * Does the remove action
+     * @param  {Object} pData [The data object to be removed]
+     * @return {[type]}       [description]
+     */
+    $scope.remove = function () {
+
+      $rootScope.displayLoading();
+
+      factorsService.removeEquipment($scope.removeObject)
+      .then(function(pResult) {
+
+        if(pResult.removed) {
+          displaySuccess($rootScope.returnMessages.equipmentRemoveSuccess);
+          $scope.loadFactors();
+        } else {
+          displayError($rootScope.returnMessages.removeEquipmentInvalid);
+        }
+      })
+      .catch(function(pError) {
+        console.log(pError);
+        displayError($rootScope.returnMessages.removeEquipmentError);
       })
       .finally(function() {
         $rootScope.hideLoading();
@@ -2261,203 +2686,6 @@ bioPredictorApp.controller('modifyDataController',['$rootScope','$scope', '$stat
 // *
 // * Author:      David Obando Paniagua - dobando2595@gmail.com
 // * Date:        05 Sep 2016
-// * Description: The Factors list controller
-//
-
-'use strict';
-
-// Handles the menu controller logic
-bioPredictorApp.controller('listFactorsController', ['$scope', '$rootScope', '$state', '$uibModal', 'sessionService', 'factorsService',
-  function($scope, $rootScope,$state, $uibModal, sessionService, factorsService) {
-
-    $rootScope.isLogin = false;
-    $rootScope.isMenu = false;
-
-    $scope.modalActions = {
-        add: "Agregar Factor",
-        edit: "Editar Factor",
-        view: "Ver Factor"
-    };
-
-    $scope.permissions = {
-      addFactor : {
-        enabled : true,
-        class : ''
-      },
-      viewListFactor : {
-        enabled : true,
-        class : ''
-      },
-      removeFactor : {
-        enabled : true,
-        class : ''
-      }
-    };
-
-    /**
-     * Page init function
-     * @return {[type]} [description]
-     */
-    var init = function() {
-
-      // Get all permissions
-      $scope.permissions.viewListFactor.enabled = sessionService.hasAction($rootScope.actions.viewListFactor);
-      $scope.permissions.addFactor.enabled = sessionService.hasAction($rootScope.actions.addFactor);
-      $scope.permissions.removeFactor.enabled = sessionService.hasAction($rootScope.actions.removeFactor);
-
-      $scope.permissions.viewListFactor.class = ($scope.permissions.viewListFactor.enabled) ? 'bp-enabled' : 'bp-disabled';
-      $scope.permissions.addFactor.class = ($scope.permissions.addFactor.enabled) ? 'bp-enabled' : 'bp-disabled';
-      $scope.permissions.removeFactor.class = ($scope.permissions.removeFactor.enabled) ? 'bp-enabled' : 'bp-disabled';
-
-      if($scope.permissions.viewListFactor.enabled) {
-        $scope.loadFactors();
-      }
-
-    };
-
-
-    /**
-     * Inits the Page variables
-     * @return {[type]} [description]
-     */
-    $scope.loadFactors = function () {
-
-      $rootScope.displayLoading();
-
-      factorsService.getFactors()
-      .then(function(pFactors) {
-        $scope.factors = pFactors;
-        $rootScope.hideLoading();
-      })
-      .catch(function(pError) {
-        displayError($rootScope.returnMessages.loadFactorsError);
-        $rootScope.hideLoading();
-      });
-    };
-
-    /**
-     * Displays error massage on UI
-     * @param  {string} pMessage [The message to be displayed]
-     * @return {[type]}          [description]
-     */
-    var displayError = function(pMessage){
-        $scope.errorMessage = pMessage;
-        $scope.error = true;
-    };
-
-    /**
-     * Displays the success message on UI
-     * @param  {string} pMessage [The message to be displayed]
-     * @return {[type]}          [description]
-     */
-    var displaySuccess = function(pMessage) {
-        $scope.successMessage = pMessage;
-        $scope.success = true;
-    };
-
-    /**
-     * Handles the modal display event
-     * @param  {string} pModalAction [The action to be performed]
-     * @param  {Object} pFactor     [The factor object to be used if neccessary]
-     * @return {[type]}              [description]
-     */
-    $scope.displayModal = function (pModalAction, pFactor) {
-
-        if(($scope.permissions.addFactor.enabled && pModalAction === $scope.modalActions.add) ||
-        (pModalAction === $scope.modalActions.view)) {
-
-          $scope.currentAction = pModalAction;
-
-          // Set factor on edit
-          if($scope.currentAction != $scope.modalActions.add) {
-            $scope.factor = pFactor;
-          } else {
-            $scope.factor = null;
-          }
-
-          var modalInstance = $uibModal.open({
-            animation: true,
-            templateUrl: 'views/modals/modifyFactor.html',
-            controller: 'modifyFactorController',
-            scope: $scope
-          });
-
-        }
-    };
-
-    /**
-     * Sends the request to te service to remove a factor
-     * @param  {[type]} pFactor [description]
-     * @return {[type]}          [description]
-     */
-    $scope.removeFactor = function (pFactor) {
-
-      if(!$scope.permissions.removeFactor.enabled) {
-        return;
-      }
-
-      $scope.removeObject = pFactor;
-      $scope.removeModalInstance = $uibModal.open({
-        animation: true,
-        templateUrl: 'views/modals/removeConfirm.html',
-        controller: 'removeConfirmController',
-        scope: $scope
-      });
-    };
-
-    /**
-     * Does the remove action
-     * @param  {Object} pData [The data object to be removed]
-     * @return {[type]}       [description]
-     */
-    $scope.remove = function () {
-
-      $rootScope.displayLoading();
-
-      factorsService.removeFactor($scope.removeObject)
-      .then(function(pResult) {
-
-        if(pResult.removed) {
-          displaySuccess($rootScope.returnMessages.factorRemoveSuccess);
-          $scope.loadFactors();
-        } else {
-          displayError($rootScope.returnMessages.removeFactorInvalid);
-        }
-      })
-      .catch(function(pError) {
-        console.log(pError);
-        displayError($rootScope.returnMessages.removeFactorError);
-      })
-      .finally(function() {
-        $rootScope.hideLoading();
-        $scope.removeObject = {};
-        $scope.removeModalInstance.dismiss();
-      });
-    };
-
-    /**
-     * Clears the alerts handler
-     * @return {void} []
-     */
-    $scope.clearAlert = function (pIsError) {
-
-        if(pIsError) {
-            $scope.error = false;
-            $scope.errorMessage = '';
-        } else {
-            $scope.success = false;
-            $scope.successMessage = '';
-        }
-    };
-
-    init();
-
-}]);
-
-
-// *
-// * Author:      David Obando Paniagua - dobando2595@gmail.com
-// * Date:        05 Sep 2016
 // * Description: Modify factor controller file
 //
 
@@ -2478,10 +2706,9 @@ function ($rootScope, $scope, $uibModalInstance, bioProcessesService, sessionSer
         .then(function(pFactors) {
             $scope.systemFactors = pFactors;
             if($scope.bioProcess) {
-                console.log($scope.bioProcess);
+
                 return bioProcessesService.getFactorsXBioProcess($scope.bioProcess);
             } else {
-                console.log("Nada");
                 return [];
             }
         })
@@ -2525,7 +2752,7 @@ function ($rootScope, $scope, $uibModalInstance, bioProcessesService, sessionSer
         for(var factorIndex = 0; factorIndex < bpFactors.length; factorIndex++) {
             var factor = bpFactors[factorIndex];
 
-            if(factor.factorId === pElement.factorId) {
+            if(factor.attributeId === pElement.attributeId) {
 
                 result = true;
                 break;
@@ -2620,7 +2847,6 @@ function ($rootScope, $scope, $uibModalInstance, bioProcessesService, sessionSer
      * @return {[type]} [description]
      */
     var mergeFactors = function () {
-
         $scope.displayFactors = [];
 
         for(var factorIndex = 0; factorIndex < $scope.systemFactors.length; factorIndex++) {
@@ -2649,13 +2875,14 @@ function ($rootScope, $scope, $uibModalInstance, bioProcessesService, sessionSer
         var selectedFactors = [];
         var displayFactors = $scope.displayFactors;
 
+
         for(var factorIndex = 0; factorIndex < displayFactors.length; factorIndex++) {
 
             var factor = displayFactors[factorIndex];
 
             // Enter the selected factor on new array
             if(factor.class) {
-                selectedFactors.push(factor.factorId);
+                selectedFactors.push(factor.attributeId);
             }
         }
 
@@ -3004,6 +3231,45 @@ function ($rootScope, $scope, $uibModalInstance, companiesService) {
 bioPredictorApp.controller('modifyFactorController',['$rootScope','$scope','$uibModalInstance', 'factorsService', 'sessionService',
 function ($rootScope, $scope, $uibModalInstance, factorsService, sessionService) {
 
+    var init = function () {
+        loadEquipmentTypes();
+        $scope.values = [];
+
+    };
+
+    $scope.updateAttributes= function(pEquipmentType){
+
+      $scope.equipmentType = $scope.selectedEquipmentType;
+      loadAttributes();
+    };
+
+    var loadEquipmentTypes = function(){
+
+      factorsService.getEquipmentTypes()
+      .then(function(pEquipmentTypes)
+      {
+        $scope.equipmentTypes = pEquipmentTypes;
+      })
+      .catch(function(pError)
+      {
+        displayError($rootScope.returnMessages.loadBioProcessesError);
+      });
+
+    };
+
+        var loadAttributes = function(){
+
+      factorsService.getAttributesXEquipmentType($scope.equipmentType)
+      .then(function(pAttributes)
+      {
+        $scope.attributes = pAttributes;
+      })
+      .catch(function(pError)
+      {
+        displayError($rootScope.returnMessages.loadBioProcessesError);
+      });
+
+    };
     /**
      * Displays error massage on UI
      * @param  {string} pMessage [The message to be displayed]
@@ -3028,23 +3294,19 @@ function ($rootScope, $scope, $uibModalInstance, factorsService, sessionService)
      * Sends new factor to service
      * @param {[type]} pCompany [description]
      */
-    var addFactor = function(pFactor) {
+    var addEquipment = function(pEquipment) {
 
         $rootScope.displayLoading();
 
-        var currentUser = sessionService.getCurrentUser();
 
-        pFactor.registerUserId = currentUser.userId;
-        pFactor.companyId = currentUser.companyId;
+        factorsService.addEquipment(pEquipment)
+        .then(function(pEquipment) {
 
-        factorsService.addFactor(pFactor)
-        .then(function(pFactor) {
-
-            if(pFactor && pFactor.factorId != - 1) {
+            if(pEquipment && pEquipment.equipmentId != - 1) {
 
                 $scope.factor = null;
-                displaySuccess($rootScope.returnMessages.factorAddSuccess);
-                console.log('Factor agregado: ' + pFactor.factorId);
+                displaySuccess($rootScope.returnMessages.equipmentAddSuccess);
+                console.log('Equipo Agregado: ' + pEquipment.equipmentId);
                 $scope.loadFactors();
             } else {
 
@@ -3060,7 +3322,9 @@ function ($rootScope, $scope, $uibModalInstance, factorsService, sessionService)
         });
     };
 
-
+    $scope.modifyFactor = function (pFactor) {
+        pFactor.class = (pFactor.class) ? null : 'bp-calculation';
+    };
     /**
      * Hanldes the button save action
      * @return {[type]} [description]
@@ -3069,11 +3333,15 @@ function ($rootScope, $scope, $uibModalInstance, factorsService, sessionService)
 
         if($scope.currentAction === $scope.modalActions.add ) {
 
-            if($scope.factor && $scope.factor.name) {
-                $scope.factor.description = ($scope.factor.description) ? $scope.factor.description : '';
-                addFactor($scope.factor);
+            if($scope.factor && $scope.factor.code) {
+              if($scope.selectedEquipmentType){
+                $scope.factor.equipmentTypeId = $scope.selectedEquipmentType.equipmentTypeId;
+                addEquipment($scope.factor);
+              }else{
+                displayError($rootScope.returnMessages.equipmentTypeRequired);
+              }
             } else {
-                displayError($rootScope.returnMessages.factorNameRequired);
+                displayError($rootScope.returnMessages.equipmentCodeRequired);
             }
 
         } else {
@@ -3104,6 +3372,8 @@ function ($rootScope, $scope, $uibModalInstance, factorsService, sessionService)
             $scope.successMessage = '';
         }
     };
+
+        init();
 }]);
 
 // *
@@ -3112,38 +3382,29 @@ function ($rootScope, $scope, $uibModalInstance, factorsService, sessionService)
 // * Description: Modify role controller file
 //
 
-bioPredictorApp.controller('modifyRoleController',['$rootScope','$scope','$uibModalInstance', 'rolesService',
-function ($rootScope, $scope, $uibModalInstance, rolesService) {
+bioPredictorApp.controller('modifyRoleController',['$rootScope','$scope','$uibModalInstance', 'rolesService','factorsService',
+function ($rootScope, $scope, $uibModalInstance, rolesService, factorsService) {
 
     /**
      * Page init function
      * @return {[type]} [description]
      */
     var init = function () {
+        loadEquipmentTypes();
+    };
 
-        $scope.roleActions = [];
-        $rootScope.displayLoading();
+    var loadEquipmentTypes = function(){
 
-        rolesService.getActions()
-        .then(function(pActions) {
-            $scope.systemActions = pActions;
-            if($scope.role) {
-                return rolesService.getActionsXRole($scope.role);
-            } else {
-                return [];
-            }
-        })
-        .then(function(pActions) {
-            $scope.roleActions = pActions;
-            return mergeActions();
-        })
-        .catch(function(pError) {
-            console.log(pError);
-            displayError($rootScope.returnMessages.loadActionsError);
-        })
-        .finally(function() {
-            $rootScope.hideLoading();
-        });
+      factorsService.getEquipmentTypes()
+      .then(function(pEquipmentTypes)
+      {
+        $scope.equipmentTypes = pEquipmentTypes;
+      })
+      .catch(function(pError)
+      {
+        displayError($rootScope.returnMessages.loadBioProcessesError);
+      });
+
     };
 
     /**
@@ -3212,7 +3473,7 @@ function ($rootScope, $scope, $uibModalInstance, rolesService) {
     var addRole = function(pRole) {
 
         $rootScope.displayLoading();
-        pRole.actionIds = getSelectedActions();
+        pRole.equipmentTypeId = $scope.selectedEquipmentType.equipmentTypeId;
 
         rolesService.addRole(pRole)
         .then(function(pRoleId) {
@@ -3303,6 +3564,8 @@ function ($rootScope, $scope, $uibModalInstance, rolesService) {
     };
 
     init();
+
+
 }]);
 
 // *
@@ -3796,6 +4059,271 @@ function($scope, $rootScope, rolesService, companiesService, factorsService, use
 
 // *
 // * Author:      Luis Carlos Cruz - kalo070995@gmail.com
+// * Date:        06 Set 2016
+// * Description: Modify role controller file
+//
+
+bioPredictorApp.controller('modifyRoleController2',['$rootScope','$scope','$uibModalInstance', 'rolesService', 'factorsService',
+function ($rootScope, $scope, $uibModalInstance, rolesService, factorsService) {
+
+
+    var init = function () {
+
+     $rootScope.displayLoading();
+
+      factorsService.getEquipments()
+      .then(function(pEquipments) {
+        $scope.equipments = pEquipments;
+        $rootScope.hideLoading();
+      })
+      .catch(function(pError) {
+        displayError($rootScope.returnMessages.loadEquipmentsError);
+        $rootScope.hideLoading();
+      });
+
+
+    };
+
+    /**
+     * Sets current role actions as marked on UI
+     * @return {[type]} [description]
+     */
+    var mergeActions = function () {
+
+        $scope.displayActions = [];
+
+        for(var actionIndex = 0; actionIndex < $scope.systemActions.length; actionIndex++) {
+            var action = $scope.systemActions[actionIndex];
+
+            if(isInArray(action)) {
+                action.class = 'bp-calculation';
+            } else {
+                action.class = null;
+            }
+
+            $scope.displayActions.push(action);
+        }
+    };
+
+    var isInArray = function(pElement) {
+
+        var result = false;
+        var roleActions = $scope.roleActions;
+
+        for(var actionIndex = 0; actionIndex < roleActions.length; actionIndex++) {
+            var action = roleActions[actionIndex];
+
+            if(action.actionId === pElement.actionId) {
+
+                result = true;
+                break;
+            }
+        }
+
+        return result;
+    };
+
+    /**
+     * Displays error massage on UI
+     * @param  {string} pMessage [The message to be displayed]
+     * @return {[type]}          [description]
+     */
+    var displayError = function(pMessage){
+        $scope.errorMessage = pMessage;
+        $scope.error = true;
+    };
+
+    /**
+     * Displays the success message on UI
+     * @param  {string} pMessage [The message to be displayed]
+     * @return {[type]}          [description]
+     */
+    var displaySuccess = function(pMessage) {
+        $scope.successMessage = pMessage;
+        $scope.success = true;
+    };
+
+    /**
+     * Creates the role object to be sent to service
+     * @param {Object} pRole [The role object to be save]
+     */
+    var addRole = function(pRole) {
+
+        $rootScope.displayLoading();
+        pRole.actionIds = getSelectedActions();
+
+        rolesService.addRole(pRole)
+        .then(function(pRoleId) {
+            $scope.role = null;
+            displaySuccess($rootScope.returnMessages.roleAddSuccess);
+            init();
+            $scope.loadRoles();
+        })
+        .catch(function(pError) {
+            console.log(pError);
+            displayError($rootScope.returnMessages.requestError);
+        })
+        .finally(function(){
+            $rootScope.hideLoading();
+        });
+    };
+
+    /**
+     * Gets the current selected actions on UI
+     * @return {List[Object]} [The list of actions selected for the specified role]
+     */
+    var getSelectedActions = function () {
+
+        var selectedActions = [];
+        var displayActions = $scope.displayActions;
+
+        for(var actionIndex = 0; actionIndex < displayActions.length; actionIndex++) {
+
+            var action = displayActions[actionIndex];
+
+            // Enter the selected action on new array
+            if(action.class) {
+                selectedActions.push(action.actionId);
+            }
+        }
+
+        return selectedActions;
+    };
+
+
+    $scope.modifyAction = function (pAction) {
+        pAction.class = (pAction.class) ? null : 'bp-calculation';
+    };
+
+
+    /**
+     * Hanldes the button save action
+     * @return {[type]} [description]
+     */
+    $scope.save = function () {
+
+
+            if($scope.selectedEquipment && $scope.startDate && $scope.endDate) {
+                $scope.getUpkeepsXDate();
+                
+                
+            } else {
+                displayError($rootScope.returnMessages.fieldsRequired);
+            }
+
+ 
+    };
+
+    /**
+     * Hides the modal
+     * @return {[type]} [description]
+     */
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
+    /**
+     * Clears the alerts handler
+     * @return {void} []
+     */
+    $scope.clearAlert = function (pIsError) {
+
+        if(pIsError) {
+            $scope.error = false;
+            $scope.errorMessage = '';
+        } else {
+            $scope.success = false;
+            $scope.successMessage = '';
+        }
+    };
+
+    var genPDF = function(pSelectedUpkeeps){
+        var doc=new jsPDF();
+        console.log(pSelectedUpkeeps);
+        var canvas = document.getElementById('myCanvas');
+        var dataURL = canvas.toDataURL();
+        doc.addImage(dataURL,'JPEG',10,1,180,100);
+        doc.setFontSize(20);
+        doc.setFont("cambria");
+        doc.text(40,60,'Informe de Mantenimiento Preventivo');
+        doc.setFontSize(11);
+        doc.text(15,75,'Unidad de Tratamiento:');
+        doc.text(55,75,$scope.selectedEquipment.treatmentUnit);
+        doc.text(15,80,'Tipo de Equipo:');
+        doc.text(45,80,$scope.selectedEquipment.name);
+        doc.text(15,85,'Modelo:');
+        doc.text(35,85,$scope.selectedEquipment.model);
+        doc.text(15,90,'Marca:');
+        doc.text(35,90,$scope.selectedEquipment.brand);
+        doc.text(15,95,'Voltaje Nominal:');
+        doc.text(45,95,$scope.selectedEquipment.voltage.toString());
+        doc.text(80,90,'Amperios Nominal:');
+        doc.text(113,90,$scope.selectedEquipment.ampers.toString());
+        doc.text(80,95,'Potencia Nominal:');
+        doc.text(110,95,$scope.selectedEquipment.name.toString());
+        doc.text(130,75,'Código:');
+        doc.text(150,75,$scope.selectedEquipment.code);
+        var y = 65
+        var max = 1;
+        for(var i = 0; i<$scope.selectedUpkeeps.length; i++){
+          if(max == 4){
+            doc.addImage(dataURL,'JPEG',10,240,180,100);
+            doc.addPage();
+            y  = 0;
+            max = 0;
+          }
+          y+=45;
+          doc.setFontSize(12);
+          doc.setFont("cambria","bold");
+          doc.text(15,y,$scope.selectedUpkeeps[i].NAME);
+          doc.setFont("cambria","regular");
+          y+=5;
+          doc.text(15,y,"Descripción: "+$scope.selectedUpkeeps[i].DESCRIPTION);
+          max+=1;
+          doc.text(15,y+5,"Detalle: ");
+
+        }
+        doc.addImage(dataURL,'JPEG',10,240,180,100);
+        doc.addPage();
+        doc.setFont("cambria","bold");
+        doc.text(15,45,"Otras revisiones o reparaciones:");
+        doc.text(15,120,"Observaciones o recomendaciones:");
+        doc.text(15,200,"Fotos durante el mantenimiento");
+        doc.addImage(dataURL,'JPEG',10,240,180,100);
+
+
+
+        doc.save('Reporte Aminsa.pdf');
+
+    };
+
+    $scope.getUpkeepsXDate = function () {
+      $rootScope.displayLoading();
+      $scope.factor = {};
+      console.log();
+      $scope.factor.startDate = document.getElementById("startD").value;
+      $scope.factor.endDate = document.getElementById("endD").value;
+      $scope.factor.equipmentId = $scope.selectedEquipment.equipmentId;
+      rolesService.getUpkeepsXDate($scope.factor)
+      .then(function(pUpkeeps) {
+        $scope.selectedUpkeeps = pUpkeeps;
+        genPDF($scope.selectedUpkeeps);
+        $rootScope.hideLoading();
+      })
+      .catch(function(pError) {
+        displayError($rootScope.returnMessages.loadUpkeepsError);
+        $rootScope.hideLoading();
+      });
+    };
+
+
+
+    init();
+
+}]);
+
+// *
+// * Author:      Luis Carlos Cruz - kalo070995@gmail.com
 // * Date:        19 Ago 2016
 // * Description: The Companies list controller
 //
@@ -3810,9 +4338,9 @@ bioPredictorApp.controller('listRolesController', ['$scope', '$rootScope', '$sta
     $rootScope.isMenu = false;
 
     $scope.modalActions = {
-        add: "Agregar Rol",
-        edit: "Editar Rol",
-        view: "Ver Rol"
+        add: "Crear Mantenimiento",
+        edit: "Editar Mantenimiento",
+        view: "Exportar"
     };
 
     $scope.permissions = {
@@ -3926,18 +4454,40 @@ bioPredictorApp.controller('listRolesController', ['$scope', '$rootScope', '$sta
         }
     };
 
+        $scope.displaySecondModal = function (pModalAction, pRole) {
+
+
+        if(($scope.permissions.addRole.enabled && pModalAction === $scope.modalActions.add) ||
+        (pModalAction === $scope.modalActions.view)) {
+
+          $scope.currentAction = pModalAction;
+
+          // Set company on edit
+          if($scope.currentAction != $scope.modalActions.add) {
+            $scope.role = pRole;
+          } else {
+            $scope.role = null;
+          }
+
+          var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/roles/modifyRole2.html',
+            controller: 'modifyRoleController2',
+            scope: $scope
+          });
+
+        }
+    };
+
     /**
      * Sends the request to te service to remove a role
      * @param  {[type]} pRole [The role to be removed]
      * @return {[type]}          [description]
      */
-    $scope.removeRole = function (pRole) {
+    $scope.removeUpkeep = function (pUpkeep) {
 
-      if(!$scope.permissions.removeRole.enabled){
-        return;
-      }
 
-      $scope.removeObject = pRole;
+      $scope.removeObject = pUpkeep;
       $scope.removeModalInstance = $uibModal.open({
         animation: true,
         templateUrl: 'views/modals/removeConfirm.html',
@@ -3954,19 +4504,19 @@ bioPredictorApp.controller('listRolesController', ['$scope', '$rootScope', '$sta
     $scope.remove = function () {
 
       $rootScope.displayLoading();
-      rolesService.removeRole($scope.removeObject)
+      rolesService.removeUpkeep($scope.removeObject)
       .then(function(pResult) {
 
         if(pResult.removed) {
-          displaySuccess($rootScope.returnMessages.roleRemoveSuccess);
+          displaySuccess($rootScope.returnMessages.upkeepRemoveSuccess);
           $scope.loadRoles();
         } else {
-          displayError($rootScope.returnMessages.removeRoleInvalid);
+          displayError($rootScope.returnMessages.removeUpkeepInvalid);
         }
       })
       .catch(function(pError) {
         console.log(pError);
-        displayError($rootScope.returnMessages.removeRoleError);
+        displayError($rootScope.returnMessages.removeUpkeepError);
       })
       .finally(function() {
         $rootScope.hideLoading();
@@ -3989,6 +4539,7 @@ bioPredictorApp.controller('listRolesController', ['$scope', '$rootScope', '$sta
             $scope.successMessage = '';
         }
     };
+
 
     init();
 
